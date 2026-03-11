@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>课件推荐 - Talkini</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#F8FAFC;color:#1E293B;line-height:1.7}
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid #E2E8F0;padding:12px 16px;display:flex;align-items:center;gap:12px}
+.top-bar a{text-decoration:none;color:#4F46E5;font-size:14px;font-weight:600;display:flex;align-items:center;gap:4px}
+.top-bar .title{flex:1;font-size:15px;font-weight:700;text-align:center}
+.top-bar .test-link{color:#fff;background:#4F46E5;padding:6px 14px;border-radius:20px;font-size:13px}
+.content{max-width:680px;margin:0 auto;padding:16px 20px 80px}
+
+/* Markdown styles */
+.content h1{font-size:24px;font-weight:800;margin:8px 0 8px;text-align:center}
+.content h2{font-size:20px;font-weight:700;margin:32px 0 12px;padding:10px 16px;background:linear-gradient(135deg,#EEF2FF,#F0F4FF);border-radius:12px;border-left:4px solid #4F46E5}
+.content h3{font-size:17px;font-weight:700;margin:24px 0 8px;padding-bottom:4px}
+.content p{margin:6px 0;font-size:15px}
+.content blockquote{background:#FFFBEB;border-left:4px solid #F59E0B;padding:10px 16px;border-radius:0 10px 10px 0;margin:10px 0;font-size:14px}
+.content blockquote p{margin:0}
+.content img{border-radius:12px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.content ol,.content ul{padding-left:20px;margin:8px 0}
+.content li{margin:4px 0;font-size:14px}
+.content strong{color:#1E293B}
+.content hr{border:none;border-top:1px solid #E2E8F0;margin:20px 0}
+.content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;display:block;overflow-x:auto}
+.content th{background:#4F46E5;color:#fff;padding:10px 12px;text-align:left;font-weight:600;white-space:nowrap}
+.content td{padding:10px 12px;border-bottom:1px solid #E2E8F0}
+.content tr:hover td{background:#F8FAFC}
+
+/* Difficulty tag colors */
+.content p strong:first-child{display:inline-block}
+
+/* Floating test button */
+.fab{position:fixed;bottom:24px;right:24px;z-index:30;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:14px 20px;border-radius:50px;font-size:15px;font-weight:700;box-shadow:0 4px 20px rgba(102,126,234,.4);cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:6px;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.fab:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(102,126,234,.5)}
+.fab:active{transform:scale(.96)}
+
+/* Responsive table */
+@media(max-width:600px){
+  .content table{font-size:12px}
+  .content th,.content td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="../index.html">← 首页</a>
+  <span class="title">课件推荐</span>
+  <a href="level-test.html" class="test-link">去测试</a>
+</div>
+
+<div class="content" id="content"></div>
+
+<a href="level-test.html" class="fab">📝 测一测水平</a>
+
+<script>
+const md = `# 英语教材怎么选？课件推荐指南
+
+> 💡 选教材看**孩子的英语水平**，不看年龄。同龄孩子基础可能差很多，选对难度比选对年龄更重要。
+
+**难度参考：** ❤ 入门 → ❤❤ 基础 → ❤❤❤ 中级 → ❤❤❤❤ 中高级 → ❤❤❤❤❤ 高级
+
+---
+
+## 一、启蒙阶段
+
+> 适合刚刚启蒙或零基础的孩子
+
+### 🔤 牛津自然拼读 Oxford Phonics World
+
+<img src="https://pica.zhimg.com/100/v2-8196e69cce8bae9d1b9febf342de3e00_r.jpg" width="160">
+
+**难度：❤**｜出版社：牛津大学出版社｜参考年龄：3-12岁
+
+1. 牛津大学出版社经典教材，系统专业又层层递进，堪称最好的自然拼读教材
+2. 靠"字母/字母组合发音规律"实现"见词能拼、听音能写"
+3. 内容丰富，包含单词听读、书写、辨音、故事、歌曲、游戏
+4. 分级清晰：入门→基础→进阶→应用，衔接拼读与阅读
+
+> 📌 平台提供简洁版和多动画版两种课件可选
+
+---
+
+### 🐣 51Talk经典英语青少年系列
+
+<img src="https://pic2.zhimg.com/100/v2-e845c002c6f251657310ae1f17360e9b_r.jpg" width="160">
+
+**难度：❤❤**｜参考年龄：3-16岁｜共10个级别（LK-L9）
+
+1. 适合启蒙，每节课一个主题，涉及范围广
+2. 内容循序渐进，画面活泼，能吸引小朋友注意力，非常适合中国宝宝体质
+3. 科学分级体系：
+   - **LK（启蒙预备级）**：听懂课堂指令，会说基础单词
+   - **L0（零基础入门）**：26个字母认知，144个核心词汇
+   - **L1-L3（初级）**：入门到简单应用，累计864个高频词汇
+   - **L4-L6（中级）**：熟练应用与读写拓展，1296个词汇
+   - **L7-L9（高级）**：学术冲刺，864个学术词汇+18个核心语法点
+
+---
+
+### 🐋 Reach鲸鱼教材
+
+<img src="https://pic1.zhimg.com/100/v2-a8918cf0e621304ca3ec9f78180dc374_r.jpg" width="160">
+
+**难度：❤❤❤**｜出版社：国家地理学习｜共9个级别（PreK-G3）
+
+1. 课件十分有趣，结合真实世界主题，会提高孩子的兴趣
+2. 相对于前面2个教材，Reach鲸鱼难度稍微大一些，需要孩子上过一段课后再进行
+3. PreK级别适合零基础孩子，通过故事、歌曲和游戏自然习得英语
+
+---
+
+### 📚 启蒙绘本系列
+
+**难度：❤❤**｜参考年龄：2-6岁
+
+平台还提供多套经典启蒙绘本课件：
+- **波西和皮普《Pip and Posy》** — Axel Scheffler（《咕噜牛》作者）创作，围绕两个好朋友的日常小故事，语言简单重复，画风温暖，适合零基础磨耳朵和亲子共读
+- **小鼠波波 Maisy** — Lucy Cousins经典低幼绘本，色彩鲜明、句式极简（每页1-2句），主题贴近幼儿生活（吃饭、睡觉、玩耍），是英语启蒙的"第一套绘本"首选
+- **小饼干狗 Biscuit** — HarperCollins出版的I Can Read系列入门级，讲述小女孩和小狗Biscuit的温馨日常，句型反复出现（"Woof, woof!"），非常适合从绘本过渡到自主阅读
+- **小猪小象 An Elephant & Piggie Book** — Mo Willems创作，以对话体为主，语言幽默夸张，表情丰富，特别适合练习口语语感和情绪表达
+
+---
+
+### 🔤 Sight Words 启蒙高频词
+
+<img src="https://picx.zhimg.com/100/v2-be7f4ea9c408e80e307940e688c0a3c1_r.jpg" width="160">
+
+**难度：❤❤**｜参考年龄：幼儿园-一年级
+
+1. 专为儿童英语启蒙设计的高频词学习资源，共5个级别（L1-L5）
+2. 科学编排：按词汇出现频率和难度递进，从40个基础词汇到128个进阶词汇
+3. 内容包含单词听读、书写、辨音、故事、歌曲、游戏
+
+---
+
+## 二、进阶阶段
+
+> 适合有一定英语基础，需要系统提升的孩子
+
+### 📦 Kid's Box 剑桥国际少儿英语
+
+<img src="https://pic3.zhimg.com/100/v2-61c7e4be2b6c8d54b88bcf4a8171ed16_r.jpg" width="160">
+
+**难度：❤❤**｜出版社：剑桥大学出版社｜共7级（Starter-L6）｜参考年龄：4-12岁
+
+1. 剑桥大学出版社专为非英语国家儿童出版的零起点英语教材
+2. 内嵌KET、PET备考内容，注重词汇、语法等知识点，提升"听说读写"做题技巧
+3. 含自然拼读（Phonics），结合歌曲、故事和游戏
+4. 分级清晰：Starter（零基础入门）→ L1-L2（Starters水平）→ L3-L4（Movers-Flyers）→ L5-L6（衔接KET）
+
+> 📌 平台提供第二版和第三版课件
+
+---
+
+### 🚀 剑桥 Power UP
+
+<img src="https://pic1.zhimg.com/100/v2-f0122c5962cec333a4be44d2df8f886e_r.jpg" width="160">
+
+**难度：❤❤❤**｜出版社：剑桥大学出版社｜共7级（0-6级）｜参考年龄：4-13岁
+
+1. Kid's Box升级版，需要孩子有一定基础，后面级别难度比较大
+2. 语法板块升级明显，还有大量跨学科教育（人文地理、自然科学、手工绘画等）
+3. 阅读素材广泛，融合项目式学习（PBL）
+4. 分级体系：
+   - **0级（预备级）**：英语启蒙，26个字母+100+高频词
+   - **1-2级（基础-进阶）**：日常句型与阅读理解
+   - **3-4级（提升-强化）**：阅读策略与KET备考衔接
+   - **5-6级（冲刺级）**：KET/PET高分突破，批判性思维
+
+---
+
+### 📖 Wonder Skills
+
+<img src="https://pic2.zhimg.com/100/v2-72543c1e0a72e1f9c77d42dc01b2edfb_r.jpg" width="160">
+
+**难度：❤❤❤**｜出版社：麦格劳·希尔｜5级分级（Starter-Master）｜参考年龄：6-15岁
+
+1. 聚焦高频词、阅读、口语练习三个板块，非常清晰
+2. 有配套练习册，利于孩子课后巩固，五个级别可延伸拓展
+3. 阅读材料范围广，从人文地理到社会科学都包含
+4. 适配中国孩子：先学单词句型再读文本，符合外语学习规律
+5. 思维+应试双提升：搭配思维工具，同步中高考题型
+6. 学完3级达KET、5级达PET水平，对应CEFR PreA1-Lower B2
+
+---
+
+### 🔍 Oxford Discover 牛津探索系列
+
+<img src="https://pic2.zhimg.com/100/v2-b5a57e839ba580169baffea41c810ba9_r.jpg" width="160">
+
+**难度：❤❤❤**｜出版社：牛津大学出版社｜共7级（Foundation+L1-L6）｜参考年龄：5-14岁
+
+1. 由老师引导学生学习学科知识，透过问题探索，培养批判思考及问题解决能力
+2. 每个单元的文学及科普文本让孩子练习读写技巧
+3. 语法板块比较清楚
+4. 融合学科知识与语言学习，培养21世纪4C核心能力（批判性思维、沟通、协作、创新）
+5. 覆盖CEFR A1-B2，衔接剑桥YLE、KET/PET及FCE考试
+
+---
+
+### 🎒 Everybody Up 牛津美式英语
+
+<img src="https://pic1.zhimg.com/100/v2-469353bfd3aeea904aadefbc8e293330_r.jpg" width="160">
+
+**难度：❤❤❤**｜出版社：牛津大学出版社｜共7级（Starter+1-6级）｜参考年龄：5-13岁
+
+1. 全球最强的儿童听说启蒙教材之一
+2. 以歌曲、chant、故事和TPR动作课堂为核心，让孩子敢听、敢说、敢表达
+3. 图大字少、句子简短、互动性强，非常适合作为孩子的英语第一套教材
+4. 对应CEF国际语言标准Pre A1-B1级，覆盖2196个核心词汇
+5. 与国内公立校教材匹配度高达89.23%
+
+---
+
+### 🎯 Let's Go 牛津经典少儿英语（第五版）
+
+<img src="https://pic1.zhimg.com/100/v2-5a92edfae23949595766007af256d86c_r.jpg" width="160">
+
+**难度：❤❤❤**｜出版社：牛津大学出版社｜参考年龄：6-12岁
+
+1. 全球畅销儿童英语教材，通过歌曲、对话、自然拼读、游戏和情景练习学习
+2. 内容主题贴近孩子生活，语言结构清晰、重复度高，便于理解和开口表达
+3. 对应CEFR Pre-A1到A1水平
+
+---
+
+### 🌳 Oxford Reading Tree 牛津阅读树（跨阶段）
+
+<img src="https://pic1.zhimg.com/100/v2-60399956284eaeb2321af428d2e0c09c_r.jpg" width="160">
+
+**难度：❤-❤❤❤❤**｜出版社：牛津大学出版社｜16级（Stage 1-16）｜参考年龄：3-14岁
+
+1. 全球133个国家采用，英国家庭/学校首选启蒙教材
+2. 围绕Biff一家+魔法钥匙冒险展开，连续剧式叙事，趣味性强
+3. 拼读+阅读双轨：自然拼读训练与分级阅读结合
+4. 从无字书→短句→章节书，循序渐进，1000+册读物
+5. Stage 1-3 零基础启蒙，Stage 4-9 进阶提升，Stage 10+ 高阶拔高
+
+---
+
+### 📕 RAZ 分级阅读（跨阶段）
+
+<img src="https://pic4.zhimg.com/100/v2-701a2e59b4876965ee4546f6df7fa94d_r.jpg" width="160">
+
+**难度：❤-❤❤❤❤**｜共29个级别（AA-Z2）｜参考年龄：幼儿园-高中
+
+1. 美国经典分级阅读体系，从零基础到高中全覆盖
+2. 分级体系：
+   - **入门（AA-C）**：零基础，认单词、读短句
+   - **基础（D-J）**：初级水平，词汇500-1500词
+   - **进阶（K-P）**：中级水平，读300-800词文章
+   - **高阶（Q-Z2）**：高级水平，2000+词，衔接学术英语
+
+---
+
+### 📗 Heinemann 海尼曼分级阅读（G0-G2）
+
+<img src="https://pic2.zhimg.com/100/v2-2eab0bb08725dcf2692071436bb1c849_r.jpg" width="160">
+
+**难度：❤❤**｜参考年龄：4-10岁
+
+1. 专为儿童英语启蒙与早期阅读设计的分级绘本系列
+2. 以简短句型和丰富插图为主，帮助孩子通过情境理解语言
+3. 主题涵盖家庭、动物、学校、自然等生活场景
+
+---
+
+### ✨ New Magic 魔法英语
+
+<img src="https://pic2.zhimg.com/100/v2-282cfc9b15734a0e4a040b2bfc56eec3_r.jpg" width="160">
+
+**难度：❤❤**｜参考年龄：幼儿园-初中（K1-K3 & G1-G9）
+
+1. 香港朗文出版的小学英语主教材，香港超过80%小学采用，教学体系成熟
+2. 以故事和任务驱动学习，每单元围绕一个主题展开，融合听说读写
+3. 语法和词汇编排贴合亚洲孩子的学习节奏，比纯欧美教材更易上手
+4. K1-K3为启蒙阶段，G1-G6为基础进阶，G7-G9衔接更高水平
+
+---
+
+### 🐷 小猪佩奇（1-4季）
+
+<img src="https://pic2.zhimg.com/100/v2-c32ccab6a875b12686d3d8f67d5dd54b_qhd.jpg" width="160">
+
+**难度：❤❤❤**｜参考年龄：小学一年级及以上
+
+1. 围绕佩奇一家生活场景展开，句式简短、表达自然
+2. 四季难度递进：从基础听力→社交表达→情景表达→语篇理解
+3. 第四季涉及科学、音乐、环保等内容，适合有一定基础的孩子
+
+---
+
+## 三、拔高阶段
+
+> 适合有较好英语基础，需要学术能力提升的学生
+
+### 🧠 Think 剑桥青少年英语
+
+<img src="https://pic4.zhimg.com/100/v2-4c1b176b3793bd26bd5d3d93bc2a7643_r.jpg" width="160">
+
+**难度：❤❤❤❤❤**｜出版社：剑桥大学出版社｜共6级（Starter-L5）
+
+1. 相比国内课本，提供更多辅助理解词汇短语的精确练习（根据语境选词、连句等）
+2. 除了主题重点词汇，还有很多非主题重点词汇，拓展孩子词汇量
+3. 完全对应剑桥五级考试：KET、PET、FCE、CAE四个级别
+
+> 📌 平台提供PDF版和PPT课件版
+
+---
+
+### 🌍 Wonders 美国小学英语
+
+<img src="https://pic4.zhimg.com/100/v2-e52a963ebb73e5dc9913e3ae985f6489_r.jpg" width="160">
+
+**难度：❤❤❤❤**｜出版社：麦格劳·希尔｜共7级（GK-G6）｜参考年龄：3-12岁
+
+1. 全球首套对标美国共同核心州立标准（CCSS）的教材
+2. 蓝思指数覆盖BR-1100L，对应CEFR PreA1-Lower B2
+3. 包含18万阅读词汇，可衔接剑桥KET/PET、雅思、托福及中高考
+4. 适合英语基础好、需同步美国课堂的孩子
+
+---
+
+### 📊 PM阅读系列（Wonder Skills扩展）
+
+<img src="https://picx.zhimg.com/100/v2-29d4fb46a51fa515d1f342c8d6c59057_r.jpg" width="160">
+
+**难度：❤❤❤❤**｜共4级（Starter-Advanced）
+
+1. 由Cengage Learning出版的经典分级阅读体系，全球广泛使用
+2. 作为Wonder Skills的阅读扩展材料，提供大量配套阅读素材
+3. 文本类型丰富：虚构故事、非虚构科普、诗歌等，培养多元阅读能力
+4. 每个级别配有阅读理解练习，训练提取信息、推理判断等核心阅读技能
+
+---
+
+### 📐 New Round UP
+
+**难度：❤❤❤**｜出版社：Pearson培生｜共7级（Starter-L6）｜参考年龄：6-16岁
+
+1. 全球知名的语法专项训练教材，被誉为"语法练习圣经"
+2. 每个语法点配有清晰的图表讲解+大量分层练习，从机械操练到灵活运用
+3. 彩色插图和游戏化设计让语法学习不枯燥，低级别尤其适合小学生
+4. 适合作为主教材的语法补充，搭配任何体系使用
+
+---
+
+### 📘 新概念英语（1-4册）
+
+<img src="https://pic3.zhimg.com/100/v2-17223af8dc17bc57ff10bd1f59edcd1e_r.jpg" width="160">
+
+**难度：❤❤❤**｜参考年龄：小学高年级-成人
+
+1. 经典英语教材，四册构成完整成长阶梯
+2. 分册定位：
+   - **第一册**：英语入门与启蒙，基础词汇与句型
+   - **第二册**：夯实基础、建立语法框架（初中水平）
+   - **第三册**：中级阶段，长句分析、逻辑表达（CEFR B1-B2）
+   - **第四册**：高级英语运用与思辨表达（CEFR B2-C1）
+3. 兼顾听说读写，英式英语表达自然优美
+
+---
+
+### 🌐 Look 国家地理少儿英语
+
+<img src="https://pic2.zhimg.com/100/v2-1bf482eab5462ad40338a6fc43b59dc7_r.jpg" width="160">
+
+**难度：❤❤-❤❤❤**｜出版社：国家地理学习｜共7级（Starter-L6）｜参考年龄：7-13岁
+
+1. 通过真实世界图片、故事和视频引导孩子在语境中学习英语
+2. 主题涵盖动物、家庭、自然、科技和文化
+3. 语言难度从Pre-A1到B1，是从少儿英语向学术英语过渡的理想课程
+
+---
+
+### 🌏 Cambridge Global English 剑桥国际少儿英语
+
+<img src="https://pic4.zhimg.com/100/v2-68d203b414265a7975889596a0f51693_r.jpg" width="160">
+
+**难度：❤❤-❤❤❤**｜出版社：剑桥大学出版社｜共10级｜参考年龄：6-14岁
+
+1. 融合阅读、听力、口语、写作和跨学科学习（CLIL）
+2. 培养孩子的语言能力与全球视野
+3. 语言难度从CEFR Pre-A1到B1+
+
+---
+
+### 📖 2000 Essential English Words
+
+<img src="https://pic3.zhimg.com/100/v2-be87cf835e0b677cf94dd7de74e29cae_r.jpg" width="160">
+
+**难度：❤❤❤**｜共6册｜参考年龄：小学高年级-高中
+
+1. 由词汇学专家Paul Nation编写，涵盖2000个最常用核心英语单词
+2. 每册配有生动例句、短文阅读和练习，在语境中理解和运用词汇
+3. 内容涉及日常生活、学校、健康、科技等主题
+
+> 📌 平台提供PPT版和PDF版
+
+---
+
+### 📖 4000 Essential English Words
+
+<img src="https://pic1.zhimg.com/100/v2-c008c922a3517c0a28313ae990dc46f2_r.jpg" width="160">
+
+**难度：❤❤❤**｜共6册｜参考年龄：小学高年级-高中｜CEFR A2-B2
+
+1. 同为Paul Nation编写，系统收录4000个核心单词
+2. 每册约600-700个词汇，通过例句、短文和多样练习在语境中掌握
+3. 是连接基础英语与流利表达的重要桥梁
+
+---
+
+### 🗣️ Side by Side
+
+<img src="https://pica.zhimg.com/100/v2-2f2158f0293b80697c256cee2d5b67dc_r.jpg" width="160">
+
+**难度：❤❤❤**｜共4册｜参考年龄：小学高年级-成人
+
+1. 以真实沟通场景为核心的实用英语教材
+2. 四册递进：零基础入门→初级进阶→中级→中高级
+3. 注重口语表达与语法综合应用
+
+---
+
+### 🗣️ Free Talk 少儿定主题自由交谈
+
+<img src="https://pic3.zhimg.com/100/v2-f2eb1a48ce641d8c02720f09cd7af004_r.jpg" width="160">
+
+1. 开放式口语练习，围绕特定主题展开自由对话（如动物、旅行、学校生活等）
+2. 没有固定课文，老师根据孩子水平灵活引导，重在"敢说"和"多说"
+3. 适合有一定基础的孩子锻炼口语表达、临场反应和英语思维能力
+
+---
+
+## 四、成人/考试专区
+
+### 💼 成人英语
+
+- **成人经典英语1-13** — 51Talk成人课程，涵盖工作交流、商务会议、出国旅游等场景，CEFR A1-B2
+- **50天英语情景速成** — 50个日常主题（问候、购物、点餐、看病等），短期口语突破的"开口神器"
+- **Unlock 2e** — 剑桥大学出版社学术英语教材，以Discovery Education真实视频驱动学习，注重批判性思维和学术写作，CEFR A1-C1，适合大学生及备考雅思托福
+- **剑桥商务英语 Business Vocabulary in Use** — 剑桥经典商务词汇工具书，按主题分类（会议、谈判、财务等），职场人士刚需
+- **Business English 商务英语** — 商务沟通全场景课程
+- **Travel English 旅行英语** — 出国旅行实用场景（机场、酒店、问路、点餐等），短期速成
+- **Smile Daily 日常生活口语** — 轻松日常话题，适合零压力练口语
+- **English Conversation 英语对话** — 以对话为核心的口语训练课程
+
+### 📝 雅思备考
+
+- **IELTS新雅思口语 5.5-6.5-7.5分** — 分层对比不同分数段回答范例，系统提升口语表达
+- **雅思题库** — 口语真题题库，实战模拟练习
+- **新东方100个句子记完7000个雅思单词** — 通过100个精选长难句覆盖7000核心词汇，高效速记
+
+### 🎤 KET备考
+
+- **KET口语秘籍** — 针对剑桥A2 Key考试口语部分，覆盖Part 1-2常见话题和答题技巧
+
+### 💼 商务英语专区
+
+- **Business Free Talk 商务版** — 商务场景自由交谈，模拟真实职场沟通
+- **Business Travel English 海外商务差旅英语** — 出差场景专项（签证、商务宴请、展会等）
+- **New Interview English 新面试英语** — 英语面试全流程训练（自我介绍、行为面试、薪资谈判等），高中毕业难度起
+- **职场入门英语初级** — 职场新人必备，邮件、电话、会议等基础商务场景
+
+### 📐 其他
+
+- **加州数学** — 美国加州公立学校数学教材，全英文数学课程，适合想用英语学数学、备考国际学校的孩子
+- **音标** — 国际音标系统学习，适合需要纠正发音的学生和成人
+
+---
+
+## 📌 选课建议速查表
+
+> 根据孩子当前英语水平选择，而非年龄
+
+| 当前水平 | 主课推荐 | 搭配阅读/补充 |
+|---------|---------|-------------|
+| **零基础**（不认识字母） | 牛津自然拼读、51Talk LK-L0、Sight Words、启蒙绘本 | — |
+| **字母基础**（认识字母、会简单单词） | 51Talk L1-L3、Kid's Box、Let's Go、Everybody Up | 海尼曼、牛津阅读树 Stage 1-3 |
+| **简单句型**（能读短句、简单对话） | Power UP、Oxford Discover、Wonder Skills、Reach鲸鱼 | RAZ D-J、牛津阅读树 Stage 4-9、小猪佩奇 |
+| **基础阅读**（能读短文、日常交流） | Think Starter-L2、Wonders GK-G3、新概念1-2册 | RAZ K-P、PM阅读系列 |
+| **流利阅读**（能读长文、较流利表达） | Think L3-L5、Wonders G4-G6、新概念3-4册 | 4000 Essential Words、雅思备考 |
+| **成人学习者** | 50天情景速成、成人经典英语、Unlock | 商务英语、Side by Side、雅思 |
+`;
+
+document.getElementById("content").innerHTML = marked.parse(md);
+</script>
+</body>
+</html>
