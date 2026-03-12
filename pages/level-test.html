@@ -217,71 +217,76 @@ const LEVELS = [
     key: "zero",
     name: "零基础",
     icon: "🌱",
-    desc: "宝贝刚刚起步，建议从字母和自然拼读开始，打好基础！",
+    desc: "宝贝刚刚起步，建议从启蒙绘本和简单口语开始！",
     mainCourses: [
-      { name: "牛津自然拼读 Oxford Phonics World", diff: "❤", tag: "自然拼读入门", img: "https://pica.zhimg.com/100/v2-8196e69cce8bae9d1b9febf342de3e00_r.jpg" },
-      { name: "51Talk LK-L0", diff: "❤❤", tag: "零基础启蒙", img: "https://pic2.zhimg.com/100/v2-e845c002c6f251657310ae1f17360e9b_r.jpg" },
-      { name: "Sight Words 高频词", diff: "❤❤", tag: "高频词认读", img: "https://picx.zhimg.com/100/v2-be7f4ea9c408e80e307940e688c0a3c1_r.jpg" }
+      { name: "51Talk LK-L0", diff: "❤", tag: "零基础启蒙", img: "https://pic2.zhimg.com/100/v2-e845c002c6f251657310ae1f17360e9b_r.jpg" },
+      { name: "启蒙绘本", diff: "❤", tag: "趣味启蒙", img: "https://picx.zhimg.com/100/v2-be7f4ea9c408e80e307940e688c0a3c1_r.jpg" },
+      { name: "Sight Words 高频词", diff: "❤", tag: "高频词认读", img: "https://picx.zhimg.com/100/v2-be7f4ea9c408e80e307940e688c0a3c1_r.jpg" }
     ],
-    extraCourses: []
+    extraCourses: [
+      { name: "牛津自然拼读", diff: "❤", tag: "搭配拼读", img: "https://pica.zhimg.com/100/v2-8196e69cce8bae9d1b9febf342de3e00_r.jpg" }
+    ]
   },
   {
     key: "letter",
     name: "字母基础",
     icon: "🔤",
-    desc: "已经认识字母和简单单词，可以开始系统课程学习了！",
+    desc: "认识字母和简单单词，可以开始简单口语对话了！",
     mainCourses: [
-      { name: "Kid's Box 剑桥国际少儿英语", diff: "❤❤", tag: "剑桥体系 热门首选", img: "https://pic3.zhimg.com/100/v2-61c7e4be2b6c8d54b88bcf4a8171ed16_r.jpg" },
-      { name: "Let's Go 牛津经典少儿英语", diff: "❤❤❤", tag: "牛津经典", img: "https://pic1.zhimg.com/100/v2-5a92edfae23949595766007af256d86c_r.jpg" },
-      { name: "Everybody Up 牛津美式英语", diff: "❤❤❤", tag: "听说启蒙", img: "https://pic1.zhimg.com/100/v2-469353bfd3aeea904aadefbc8e293330_r.jpg" }
+      { name: "51Talk L1-L2", diff: "❤❤", tag: "口语启蒙", img: "https://pic2.zhimg.com/100/v2-e845c002c6f251657310ae1f17360e9b_r.jpg" },
+      { name: "Everybody Up Starter-1", diff: "❤❤", tag: "听说启蒙", img: "https://pic1.zhimg.com/100/v2-469353bfd3aeea904aadefbc8e293330_r.jpg" },
+      { name: "启蒙绘本进阶", diff: "❤❤", tag: "趣味阅读", img: "https://picx.zhimg.com/100/v2-be7f4ea9c408e80e307940e688c0a3c1_r.jpg" }
     ],
     extraCourses: [
-      { name: "海尼曼分级阅读 G0-G2", diff: "❤❤", tag: "搭配阅读", img: "https://pic2.zhimg.com/100/v2-2eab0bb08725dcf2692071436bb1c849_r.jpg" },
-      { name: "牛津阅读树 Stage 1-3", diff: "❤", tag: "搭配阅读", img: "https://pic1.zhimg.com/100/v2-60399956284eaeb2321af428d2e0c09c_r.jpg" }
+      { name: "海尼曼分级阅读 G0-G1", diff: "❤", tag: "搭配阅读", img: "https://pic2.zhimg.com/100/v2-2eab0bb08725dcf2692071436bb1c849_r.jpg" },
+      { name: "牛津阅读树 Stage 1-2", diff: "❤", tag: "搭配阅读", img: "https://pic1.zhimg.com/100/v2-60399956284eaeb2321af428d2e0c09c_r.jpg" }
     ]
   },
   {
-    key: "sentence",
-    name: "简单句型",
+    key: "conversation",
+    name: "简单对话",
     icon: "💬",
-    desc: "能读短句和简单对话了，适合进入系统提升阶段！",
+    desc: "能说简单句子和日常对话，继续提升口语流利度！",
     mainCourses: [
-      { name: "剑桥 Power UP", diff: "❤❤❤", tag: "剑桥进阶 热门", img: "https://pic1.zhimg.com/100/v2-f0122c5962cec333a4be44d2df8f886e_r.jpg" },
-      { name: "Oxford Discover 牛津探索", diff: "❤❤❤", tag: "国际学校主流", img: "https://pic2.zhimg.com/100/v2-b5a57e839ba580169baffea41c810ba9_r.jpg" },
-      { name: "Wonder Skills", diff: "❤❤❤", tag: "麦格劳希尔", img: "https://pic2.zhimg.com/100/v2-72543c1e0a72e1f9c77d42dc01b2edfb_r.jpg" }
+      { name: "51Talk L3-L4", diff: "❤❤", tag: "口语进阶", img: "https://pic2.zhimg.com/100/v2-e845c002c6f251657310ae1f17360e9b_r.jpg" },
+      { name: "Everybody Up 2-3", diff: "❤❤", tag: "听说进阶", img: "https://pic1.zhimg.com/100/v2-469353bfd3aeea904aadefbc8e293330_r.jpg" },
+      { name: "Let's Go 1-2", diff: "❤❤", tag: "牛津经典", img: "https://pic1.zhimg.com/100/v2-5a92edfae23949595766007af256d86c_r.jpg" }
     ],
     extraCourses: [
-      { name: "RAZ 分级阅读 D-J", diff: "❤❤", tag: "搭配阅读", img: "https://pic4.zhimg.com/100/v2-701a2e59b4876965ee4546f6df7fa94d_r.jpg" },
-      { name: "牛津阅读树 Stage 4-9", diff: "❤❤❤", tag: "搭配阅读", img: "https://pic1.zhimg.com/100/v2-60399956284eaeb2321af428d2e0c09c_r.jpg" }
-    ]
-  },
-  {
-    key: "reading",
-    name: "基础阅读",
-    icon: "📚",
-    desc: "能读短文、进行日常交流，准备向学术英语进发！",
-    mainCourses: [
-      { name: "Think 剑桥青少年英语 Starter-L2", diff: "❤❤❤❤❤", tag: "剑桥考试对标", img: "https://pic4.zhimg.com/100/v2-4c1b176b3793bd26bd5d3d93bc2a7643_r.jpg" },
-      { name: "Wonders 美国小学英语 GK-G3", diff: "❤❤❤❤", tag: "美国CCSS标准", img: "https://pic4.zhimg.com/100/v2-e52a963ebb73e5dc9913e3ae985f6489_r.jpg" },
-      { name: "新概念英语 1-2册", diff: "❤❤❤", tag: "经典体系", img: "https://pic3.zhimg.com/100/v2-17223af8dc17bc57ff10bd1f59edcd1e_r.jpg" }
-    ],
-    extraCourses: [
-      { name: "RAZ 分级阅读 K-P", diff: "❤❤❤", tag: "搭配阅读", img: "https://pic4.zhimg.com/100/v2-701a2e59b4876965ee4546f6df7fa94d_r.jpg" },
-      { name: "PM 阅读系列", diff: "❤❤❤❤", tag: "搭配阅读", img: "https://picx.zhimg.com/100/v2-29d4fb46a51fa515d1f342c8d6c59057_r.jpg" }
+      { name: "RAZ 分级阅读 A-D", diff: "❤❤", tag: "搭配阅读", img: "https://pic4.zhimg.com/100/v2-701a2e59b4876965ee4546f6df7fa94d_r.jpg" },
+      { name: "海尼曼 G2", diff: "❤❤", tag: "搭配阅读", img: "https://pic2.zhimg.com/100/v2-2eab0bb08725dcf2692071436bb1c849_r.jpg" },
+      { name: "牛津阅读树 Stage 3-5", diff: "❤❤", tag: "搭配阅读", img: "https://pic1.zhimg.com/100/v2-60399956284eaeb2321af428d2e0c09c_r.jpg" }
     ]
   },
   {
     key: "fluent",
-    name: "流利阅读",
-    icon: "🏆",
-    desc: "英语能力很棒！可以挑战高阶学术课程了！",
+    name: "流利对话",
+    icon: "🗣️",
+    desc: "能较流利交流和简单阅读，可以挑战更系统的课程了！",
     mainCourses: [
-      { name: "Think 剑桥青少年英语 L3-L5", diff: "❤❤❤❤❤", tag: "冲刺FCE/CAE", img: "https://pic4.zhimg.com/100/v2-4c1b176b3793bd26bd5d3d93bc2a7643_r.jpg" },
-      { name: "Wonders 美国小学英语 G4-G6", diff: "❤❤❤❤", tag: "学术英语", img: "https://pic4.zhimg.com/100/v2-e52a963ebb73e5dc9913e3ae985f6489_r.jpg" },
-      { name: "新概念英语 3-4册", diff: "❤❤❤", tag: "高阶经典", img: "https://pic3.zhimg.com/100/v2-17223af8dc17bc57ff10bd1f59edcd1e_r.jpg" }
+      { name: "51Talk L5-L6", diff: "❤❤❤", tag: "口语高阶", img: "https://pic2.zhimg.com/100/v2-e845c002c6f251657310ae1f17360e9b_r.jpg" },
+      { name: "Kid's Box 1-2", diff: "❤❤❤", tag: "剑桥体系", img: "https://pic3.zhimg.com/100/v2-61c7e4be2b6c8d54b88bcf4a8171ed16_r.jpg" },
+      { name: "Let's Go 3-4", diff: "❤❤❤", tag: "牛津经典", img: "https://pic1.zhimg.com/100/v2-5a92edfae23949595766007af256d86c_r.jpg" },
+      { name: "Power UP 1-2", diff: "❤❤❤", tag: "剑桥进阶", img: "https://pic1.zhimg.com/100/v2-f0122c5962cec333a4be44d2df8f886e_r.jpg" }
     ],
     extraCourses: [
-      { name: "4000 Essential English Words", diff: "❤❤❤", tag: "词汇拓展", img: "https://pic1.zhimg.com/100/v2-c008c922a3517c0a28313ae990dc46f2_r.jpg" }
+      { name: "RAZ 分级阅读 E-J", diff: "❤❤❤", tag: "搭配阅读", img: "https://pic4.zhimg.com/100/v2-701a2e59b4876965ee4546f6df7fa94d_r.jpg" },
+      { name: "牛津阅读树 Stage 6-9", diff: "❤❤❤", tag: "搭配阅读", img: "https://pic1.zhimg.com/100/v2-60399956284eaeb2321af428d2e0c09c_r.jpg" }
+    ]
+  },
+  {
+    key: "advanced",
+    name: "高级对话",
+    icon: "🏆",
+    desc: "流利表达、能读短文，可以挑战学术英语了！",
+    mainCourses: [
+      { name: "Oxford Discover", diff: "❤❤❤❤", tag: "国际学校主流", img: "https://pic2.zhimg.com/100/v2-b5a57e839ba580169baffea41c810ba9_r.jpg" },
+      { name: "Wonder Skills", diff: "❤❤❤❤", tag: "麦格劳希尔", img: "https://pic2.zhimg.com/100/v2-72543c1e0a72e1f9c77d42dc01b2edfb_r.jpg" },
+      { name: "Think Starter-L1", diff: "❤❤❤❤", tag: "剑桥考试对标", img: "https://pic4.zhimg.com/100/v2-4c1b176b3793bd26bd5d3d93bc2a7643_r.jpg" }
+    ],
+    extraCourses: [
+      { name: "RAZ 分级阅读 K-P", diff: "❤❤❤", tag: "搭配阅读", img: "https://pic4.zhimg.com/100/v2-701a2e59b4876965ee4546f6df7fa94d_r.jpg" },
+      { name: "新概念英语 1册", diff: "❤❤❤", tag: "经典体系", img: "https://pic3.zhimg.com/100/v2-17223af8dc17bc57ff10bd1f59edcd1e_r.jpg" }
     ]
   }
 ];
@@ -573,9 +578,9 @@ function courseCard(c, type) {
   let section = 'section-1'; // 默认启蒙阶段
   if (levelIdx === 0) section = 'section-1'; // 零基础 → 启蒙
   else if (levelIdx === 1) section = 'section-1'; // 字母基础 → 启蒙
-  else if (levelIdx === 2) section = 'section-2'; // 简单句型 → 进阶
-  else if (levelIdx === 3) section = 'section-2'; // 基础阅读 → 进阶
-  else section = 'section-3'; // 流利阅读 → 拔高
+  else if (levelIdx === 2) section = 'section-2'; // 简单对话 → 进阶
+  else if (levelIdx === 3) section = 'section-2'; // 流利对话 → 进阶
+  else section = 'section-3'; // 高级对话 → 拔高
 
   return `
     <a href="courseware.html#${section}" class="course-card" style="text-decoration:none;color:inherit">
