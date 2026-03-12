@@ -4,72 +4,561 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Talkini - 英语课件推荐与水平测试</title>
+<link rel="icon" type="image/jpeg" href="img/talkini_logo.jpg">
+<meta name="description" content="Talkini提供科学的英语水平测试和精准的课件推荐，帮助孩子找到最适合的英语学习课程">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#F0F4FF;color:#1E293B;min-height:100dvh}
-.page{max-width:520px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-.hero{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:60px 24px 48px;text-align:center;border-radius:0 0 40px 40px;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:rgba(255,255,255,.08);border-radius:50%}
-.hero::after{content:"";position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;background:rgba(255,255,255,.06);border-radius:50%}
-.hero *{position:relative;z-index:1}
-.logo{font-size:48px;margin-bottom:12px}
-.hero h1{font-size:28px;font-weight:800;letter-spacing:1px;margin-bottom:8px}
-.hero p{font-size:15px;opacity:.85;line-height:1.6}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-.cards{padding:24px 20px;display:flex;flex-direction:column;gap:16px;flex:1}
+:root {
+  --primary: #2563EB;
+  --primary-dark: #1E40AF;
+  --accent: #F59E0B;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-tertiary: #94A3B8;
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8FAFC;
+  --border: #E2E8F0;
+}
 
-.card{background:#fff;border-radius:20px;padding:28px 24px;box-shadow:0 4px 24px rgba(0,0,0,.06);display:flex;gap:20px;align-items:center;text-decoration:none;color:inherit;transition:all .2s;border:2px solid transparent;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.1)}
-.card:active{transform:scale(.98)}
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-.card-icon{width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0}
-.card-info{flex:1}
-.card-info h2{font-size:18px;font-weight:700;margin-bottom:4px}
-.card-info p{font-size:13px;color:#64748B;line-height:1.5}
-.card-arrow{font-size:20px;color:#CBD5E1;flex-shrink:0;transition:transform .2s}
-.card:hover .card-arrow{transform:translateX(4px);color:#94A3B8}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
 
-.card-test{border-color:#EEF2FF}
-.card-test .card-icon{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff}
-.card-test:hover{border-color:#C7D2FE}
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 60px 0 100px;
+}
 
-.card-course{border-color:#F0FDF4}
-.card-course .card-icon{background:linear-gradient(135deg,#22C55E,#16A34A);color:#fff}
-.card-course:hover{border-color:#BBF7D0}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255,255,255,0.08) 0%, transparent 50%);
+}
 
-.footer{text-align:center;padding:20px;font-size:12px;color:#94A3B8}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  color: white;
+}
+
+.hero-top {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.hero-logo img {
+  width: 88px;
+  height: 88px;
+  border-radius: 22px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  border: 3px solid rgba(255,255,255,0.2);
+}
+
+.hero-title {
+  flex: 1;
+}
+
+.hero h1 {
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  margin-bottom: 8px;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 0.95;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  animation: fadeInUp 0.8s ease 0.3s backwards;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 36px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 14px;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/* Main Content */
+.main-content {
+  margin-top: -60px;
+  position: relative;
+  z-index: 2;
+  padding-bottom: 80px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+/* Feature Cards */
+.feature-card {
+  background: white;
+  border-radius: 24px;
+  padding: 48px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.feature-card:hover::before {
+  transform: scaleX(1);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  border-color: var(--primary);
+}
+
+.feature-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.feature-card-primary .feature-icon {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  box-shadow: 0 8px 24px rgba(37,99,235,0.3);
+}
+
+.feature-card-secondary .feature-icon {
+  background: linear-gradient(135deg, #10B981, #059669);
+  box-shadow: 0 8px 24px rgba(16,185,129,0.3);
+}
+
+.feature-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.feature-description {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.feature-meta {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  color: var(--text-tertiary);
+}
+
+.feature-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.feature-meta-item i {
+  color: var(--accent);
+}
+
+/* Benefits Section */
+.benefits-section {
+  background: white;
+  border-radius: 24px;
+  padding: 48px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  border: 1px solid var(--border);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.section-label {
+  display: inline-block;
+  padding: 6px 16px;
+  background: linear-gradient(135deg, #EEF2FF, #E0E7FF);
+  color: var(--primary);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+
+.section-description {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.benefit-item {
+  text-align: center;
+}
+
+.benefit-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #F0F9FF, #E0F2FE);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 28px;
+}
+
+.benefit-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.benefit-description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+.footer-brand {
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .hero {
+    padding: 40px 0 64px;
+  }
+
+  .hero-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .hero-logo img {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+    letter-spacing: -1px;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+
+  .hero-stats {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .stat-number {
+    font-size: 24px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+  }
+
+  .main-content {
+    margin-top: -40px;
+    padding-bottom: 48px;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .feature-card {
+    padding: 28px 24px;
+  }
+
+  .feature-icon {
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .feature-title {
+    font-size: 22px;
+  }
+
+  .feature-description {
+    font-size: 15px;
+  }
+
+  .feature-meta {
+    gap: 16px;
+    font-size: 13px;
+  }
+
+  .benefits-section {
+    padding: 32px 20px;
+  }
+
+  .section-label {
+    font-size: 12px;
+  }
+
+  .section-title {
+    font-size: 24px;
+  }
+
+  .section-description {
+    font-size: 15px;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .benefit-icon {
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+  }
+
+  .benefit-title {
+    font-size: 16px;
+  }
+
+  .benefit-description {
+    font-size: 13px;
+  }
+}
 </style>
 </head>
 <body>
-<div class="page">
-  <div class="hero">
-    <div class="logo">📚</div>
-    <h1>Talkini</h1>
-    <p>找到最适合孩子的英语课程<br>科学测评 · 精准推荐</p>
-  </div>
-
-  <div class="cards">
-    <a class="card card-test" href="pages/level-test.html">
-      <div class="card-icon">📝</div>
-      <div class="card-info">
-        <h2>英语水平测试</h2>
-        <p>4 个趣味关卡，5 分钟快速定级<br>测完精准推荐适合的课程</p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-top">
+          <div class="hero-logo">
+            <img src="img/talkini_logo.jpg" alt="Talkini">
+          </div>
+          <div class="hero-title">
+            <h1>Talkini</h1>
+            <p class="hero-subtitle">科学测评 · 精准推荐 · 找到最适合孩子的英语课程</p>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">40+</span>
+            <span class="stat-label">精选课件</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">5分钟</span>
+            <span class="stat-label">快速测评</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">4级</span>
+            <span class="stat-label">能力分级</span>
+          </div>
+        </div>
       </div>
-      <span class="card-arrow">→</span>
-    </a>
+    </div>
+  </section>
 
-    <a class="card card-course" href="pages/courseware.html">
-      <div class="card-icon">📖</div>
-      <div class="card-info">
-        <h2>全部课件推荐</h2>
-        <p>启蒙 · 进阶 · 拔高 · 成人<br>40+ 套课件详细介绍与选课指南</p>
+  <!-- Main Content -->
+  <section class="main-content">
+    <div class="container">
+      <div class="content-grid">
+        <!-- Test Card -->
+        <a href="pages/level-test.html" class="feature-card feature-card-primary">
+          <div class="feature-icon">
+            <i class="fas fa-clipboard-check" style="color: white;"></i>
+          </div>
+          <h2 class="feature-title">英语水平测试</h2>
+          <p class="feature-description">通过4个趣味关卡，科学评估孩子的英语能力，为您精准推荐最适合的学习课程</p>
+          <div class="feature-meta">
+            <span class="feature-meta-item">
+              <i class="fas fa-clock"></i>
+              5分钟完成
+            </span>
+            <span class="feature-meta-item">
+              <i class="fas fa-chart-line"></i>
+              智能定级
+            </span>
+          </div>
+        </a>
+
+        <!-- Courseware Card -->
+        <a href="pages/courseware.html" class="feature-card feature-card-secondary">
+          <div class="feature-icon">
+            <i class="fas fa-book-open" style="color: white;"></i>
+          </div>
+          <h2 class="feature-title">课件推荐</h2>
+          <p class="feature-description">涵盖启蒙、进阶、拔高、成人四大阶段，40+套精选课件，详细介绍与科学选课指南</p>
+          <div class="feature-meta">
+            <span class="feature-meta-item">
+              <i class="fas fa-layer-group"></i>
+              分级体系
+            </span>
+            <span class="feature-meta-item">
+              <i class="fas fa-star"></i>
+              权威教材
+            </span>
+          </div>
+        </a>
       </div>
-      <span class="card-arrow">→</span>
-    </a>
-  </div>
 
-  <div class="footer">Talkini · 让英语学习更简单</div>
-</div>
+      <!-- Benefits Section -->
+      <div class="benefits-section">
+        <div class="section-header">
+          <span class="section-label">为什么选择 Talkini</span>
+          <h2 class="section-title">让英语学习更科学、更高效</h2>
+          <p class="section-description">基于科学的分级体系和专业的课程推荐，帮助每个孩子找到最适合的学习路径</p>
+        </div>
+        <div class="benefits-grid">
+          <div class="benefit-item">
+            <div class="benefit-icon">🎯</div>
+            <h3 class="benefit-title">精准定级</h3>
+            <p class="benefit-description">4关卡测试体系，从词汇到阅读全面评估，准确定位孩子的英语水平</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">📚</div>
+            <h3 class="benefit-title">权威课件</h3>
+            <p class="benefit-description">精选牛津、剑桥等国际权威出版社教材，覆盖全年龄段学习需求</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">🚀</div>
+            <h3 class="benefit-title">科学进阶</h3>
+            <p class="benefit-description">清晰的学习路径规划，从零基础到流利阅读，循序渐进稳步提升</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-brand">Talkini</div>
+    <div>让英语学习更简单</div>
+  </footer>
 </body>
 </html>
