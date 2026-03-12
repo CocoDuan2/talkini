@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>英语水平测试 - Talkini</title>
 <link rel="icon" type="image/jpeg" href="../img/talkini_logo.jpg">
-<meta name="description" content="4个趣味关卡，5分钟快速测评孩子的英语水平，精准推荐适合的学习课程">
+<meta name="description" content="5个趣味关卡，8分钟快速测评孩子的英语水平，精准推荐适合的学习课程">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -56,21 +56,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .option.wrong .opt-letter{background:var(--red);color:#fff}
 .option.disabled{pointer-events:none}
 
-/* Vocab mode */
-.vocab-word{font-size:40px;font-weight:800;color:var(--text);margin:24px 0 12px;letter-spacing:1px;animation:pop .3s ease}
-.vocab-hint{font-size:14px;color:var(--sub);margin-bottom:28px}
-.vocab-btns{display:flex;gap:16px;width:100%}
-.vocab-btns button{flex:1;padding:20px;border-radius:16px;font-size:18px;font-weight:700;border:2px solid #E2E8F0;cursor:pointer;transition:all .3s;-webkit-tap-highlight-color:transparent}
-.vocab-btns .btn-know{background:#F0FDF4;border-color:var(--green);color:var(--green)}
-.vocab-btns .btn-know:active{background:var(--green);color:#fff;transform:scale(.96)}
-.vocab-btns .btn-dunno{background:#FEF2F2;border-color:var(--red);color:var(--red)}
-.vocab-btns .btn-dunno:active{background:var(--red);color:#fff;transform:scale(.96)}
-.vocab-progress{display:flex;gap:6px;margin-top:24px;justify-content:center;flex-wrap:wrap}
-.vocab-dot{width:10px;height:10px;border-radius:50%;background:#E2E8F0;transition:all .3s}
-.vocab-dot.know{background:var(--green)}
-.vocab-dot.dunno{background:var(--red)}
-.vocab-dot.current{background:var(--yellow);transform:scale(1.3)}
-
 /* Stage Transition */
 .stage-intro{justify-content:center;text-align:center}
 .stage-intro .stage-icon{font-size:80px;margin-bottom:20px;animation:bounce 1s ease infinite}
@@ -78,12 +63,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .stage-intro p{color:var(--sub);font-size:16px;margin-bottom:40px;line-height:1.6}
 .btn-next{background:var(--primary);color:#fff;padding:16px 48px;border-radius:50px;font-weight:700;font-size:18px}
 .btn-next:active{transform:scale(.96);opacity:.9}
-
-/* Stage fail / level determined */
-.level-determined{justify-content:center;text-align:center;padding:40px 24px}
-.level-determined .level-icon{font-size:80px;margin-bottom:16px}
-.level-determined h2{font-size:24px;margin-bottom:8px}
-.level-determined p{color:var(--sub);font-size:15px;line-height:1.6;margin-bottom:32px}
 
 /* Result */
 .result{text-align:center;padding-bottom:40px}
@@ -105,16 +84,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .course-card img{width:80px;height:80px;border-radius:12px;object-fit:cover;background:#F1F5F9;flex-shrink:0}
 .course-card .info{flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px}
 .course-card .info h4{font-size:16px;font-weight:700;line-height:1.3;color:var(--text)}
-.course-card .info .tag{font-size:13px;color:var(--sub)}
-.course-card .info .diff{font-size:13px;color:#F59E0B;font-weight:600}
-.btn-retry{background:var(--primary);color:#fff;margin-top:32px;padding:16px 48px;border-radius:50px;font-weight:700;font-size:18px}
-.btn-retry:active{transform:scale(.96)}
-.recommend-label{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:6px}
-.label-main{background:#EEF2FF;color:var(--primary)}
-.label-extra{background:#F0FDF4;color:#16A34A}
 .course-card .info .tag{font-size:12px;color:var(--sub)}
-.course-card .info .diff{font-size:12px;color:var(--pink)}
-.btn-retry{background:var(--primary);color:#fff;margin-top:24px;padding:14px 40px}
+.course-card .info .diff{font-size:12px;color:#F59E0B;font-weight:600}
+.btn-retry{background:var(--primary);color:#fff;margin-top:24px;padding:14px 40px;border-radius:50px;font-weight:700;font-size:18px}
 .btn-retry:active{transform:scale(.96)}
 .recommend-label{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:4px}
 .label-main{background:#EEF2FF;color:var(--primary)}
@@ -135,79 +107,107 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 const STAGES = [
   {
     name: "关卡 1",
-    title: "基础词汇",
-    icon: "🎯",
-    desc: "看图片，选出对应的英文单词",
+    title: "字母和基础词汇",
+    icon: "🔤",
+    desc: "认识字母和最基础的单词",
     color: "#F59E0B",
     timeLimit: 15,
     passScore: 6,
     questions: [
+      { q: "「大写字母A」的小写是？", options: ["a","b","c","d"], answer: 0 },
+      { q: "「小写字母m」的大写是？", options: ["M","N","W","V"], answer: 0 },
       { q: "「苹果」的英文是？", options: ["apple","orange","banana","grape"], answer: 0 },
-      { q: "「小猫」的英文是？", options: ["dog","cat","bird","fish"], answer: 1 },
-      { q: "「太阳」的英文是？", options: ["moon","star","sun","cloud"], answer: 2 },
-      { q: "「书」的英文是？", options: ["pen","book","bag","desk"], answer: 1 },
-      { q: "「汽车」的英文是？", options: ["bike","bus","car","train"], answer: 2 },
-      { q: "「爸爸」的英文是？", options: ["mother","father","sister","brother"], answer: 1 },
-      { q: "「房子」的英文是？", options: ["school","house","park","shop"], answer: 1 },
-      { q: "「水」的英文是？", options: ["water","milk","juice","tea"], answer: 0 }
+      { q: "「猫」的英文是？", options: ["cat","dog","bird","fish"], answer: 0 },
+      { q: "「红色」的英文是？", options: ["red","blue","green","yellow"], answer: 0 },
+      { q: "「数字3」的英文是？", options: ["three","four","five","six"], answer: 0 },
+      { q: "「眼睛」的英文是？", options: ["eye","ear","nose","mouth"], answer: 0 },
+      { q: "「妈妈」的英文是？", options: ["mom","dad","sister","brother"], answer: 0 },
+      { q: "「狗」的英文是？", options: ["dog","cat","pig","cow"], answer: 0 },
+      { q: "「书」的英文是？", options: ["book","pen","desk","chair"], answer: 0 }
     ]
   },
   {
     name: "关卡 2",
-    title: "词汇量测试",
-    icon: "📖",
-    desc: "看到单词，认识就点 ✓ 不认识就点 ✗",
+    title: "简单词汇和短语",
+    icon: "📝",
+    desc: "掌握常用词汇和简单短语",
     color: "#22C55E",
-    timeLimit: 8,
-    passScore: 7,
-    mode: "vocab",
-    words: [
-      { word: "cat", real: true },
-      { word: "dog", real: true },
-      { word: "happy", real: true },
-      { word: "book", real: true },
-      { word: "blue", real: true },
-      { word: "run", real: true },
-      { word: "big", real: true },
-      { word: "water", real: true },
-      { word: "friend", real: true },
-      { word: "beautiful", real: true },
-      { word: "different", real: true },
-      { word: "important", real: true }
+    timeLimit: 20,
+    passScore: 6,
+    questions: [
+      { q: "「桌子」的英文是？", options: ["table","chair","door","window"], answer: 0 },
+      { q: "「跑步」的英文是？", options: ["run","walk","jump","swim"], answer: 0 },
+      { q: "「牛奶」的英文是？", options: ["milk","water","juice","tea"], answer: 0 },
+      { q: "「晴天」的英文是？", options: ["sunny","rainy","cloudy","windy"], answer: 0 },
+      { q: '"This is a ___" (这是一只猫)', options: ["cat","cats","dog","dogs"], answer: 0 },
+      { q: "「你好」用英文怎么说？", options: ["hello","goodbye","thanks","sorry"], answer: 0 },
+      { q: "「10」的英文是？", options: ["ten","eleven","twelve","twenty"], answer: 0 },
+      { q: "「大的」英文是？", options: ["big","small","long","short"], answer: 0 },
+      { q: "「学校」的英文是？", options: ["school","home","park","shop"], answer: 0 },
+      { q: '"What\'s your name?" 的回答是？', options: ["My name is...","I\'m...","Hello","Goodbye"], answer: 0 }
     ]
   },
   {
     name: "关卡 3",
-    title: "句子理解",
+    title: "日常对话和句型",
     icon: "💬",
-    desc: "读懂这些英文句子吧！",
+    desc: "理解和使用简单日常对话",
     color: "#3B82F6",
-    timeLimit: 30,
-    passScore: 4,
+    timeLimit: 25,
+    passScore: 6,
     questions: [
-      { q: '"She is reading a book." 她在做什么？', options: ["睡觉","看书","做饭","跑步"], answer: 1 },
-      { q: '选择正确的：我每天___上学。', options: ["I go","I goes","I going","I went"], answer: 0 },
-      { q: '"Tom played football yesterday." 汤姆什么时候踢球的？', options: ["今天","明天","昨天","现在"], answer: 2 },
-      { q: '"There are five apples." 有几个苹果？', options: ["3个","4个","5个","6个"], answer: 2 },
-      { q: '她___在看电视。（现在进行时）', options: ["is","are","was","were"], answer: 0 },
-      { q: '"My mother is taller than my sister." 谁更高？', options: ["妈妈","姐姐","哥哥","爸爸"], answer: 0 }
+      { q: '"How are you?" 的回答是？', options: ["I\'m fine","I\'m 5","I\'m Tom","I\'m happy"], answer: 0 },
+      { q: '"How old are you?" 如果你7岁，应该回答？', options: ["I\'m seven","I\'m fine","I\'m Tom","Seven years"], answer: 0 },
+      { q: '"I ___ apples" (我喜欢苹果)', options: ["like","likes","liking","liked"], answer: 0 },
+      { q: '"He is ___" (他在跑步)', options: ["running","run","runs","ran"], answer: 0 },
+      { q: '"Two ___" (两只猫)', options: ["cats","cat","cates","cat\'s"], answer: 0 },
+      { q: '"The book is ___ the table" (书在桌子上)', options: ["on","in","under","at"], answer: 0 },
+      { q: "早上见到老师应该说？", options: ["Good morning","Good night","Hello","Hi"], answer: 0 },
+      { q: '"I ___ like fish" (我不喜欢鱼)', options: ["don\'t","doesn\'t","not","no"], answer: 0 },
+      { q: '"___ you like ice cream?" (你喜欢冰淇淋吗?)', options: ["Do","Does","Are","Is"], answer: 0 },
+      { q: '"Thank you" 的回答是？', options: ["You\'re welcome","Thank you","Hello","Goodbye"], answer: 0 }
     ]
   },
   {
     name: "关卡 4",
-    title: "短文阅读",
-    icon: "📖",
-    desc: "读懂短文，回答问题",
+    title: "流利对话",
+    icon: "🗣️",
+    desc: "进行较复杂的对话和表达",
     color: "#8B5CF6",
-    timeLimit: 45,
-    passScore: 4,
+    timeLimit: 30,
+    passScore: 6,
     questions: [
-      { q: '短文：Tom is a student. He goes to school by bus every day. He likes English and math.\n\n问：Tom 怎么去上学？', options: ["走路","骑车","坐公交","开车"], answer: 2 },
-      { q: '短文：My family has four people. My father is a doctor. My mother is a teacher. I have a younger sister.\n\n问：家里有几口人？', options: ["3人","4人","5人","6人"], answer: 1 },
-      { q: '短文：Last Sunday, we went to the park. The weather was sunny. We played games and had a picnic.\n\n问：他们什么时候去的公园？', options: ["上周日","这周日","上周六","明天"], answer: 0 },
-      { q: '短文：Sarah loves reading books. She goes to the library twice a week. Her favorite books are about animals.\n\n问：Sarah 最喜欢什么类型的书？', options: ["历史书","动物书","科学书","故事书"], answer: 1 },
-      { q: '短文：If you want to be healthy, you should eat vegetables and fruits. You should also exercise every day.\n\n问：这段话主要讲什么？', options: ["如何学习","如何健康","如何工作","如何玩耍"], answer: 1 },
-      { q: '短文：Although it was raining heavily, the football match continued. The players were all wet, but they didn\'t stop playing.\n\n问：比赛停了吗？', options: ["停了","没停","延期了","取消了"], answer: 1 }
+      { q: '"Yesterday, I ___ to the park" (昨天我去了公园)', options: ["went","go","goes","going"], answer: 0 },
+      { q: '"I ___ play football" (我经常踢足球)', options: ["often","very","much","many"], answer: 0 },
+      { q: '"Elephants are ___ than cats" (大象比猫大)', options: ["bigger","big","biggest","more big"], answer: 0 },
+      { q: '"I ___ swim" (我会游泳)', options: ["can","am","do","have"], answer: 0 },
+      { q: '"I have ___ my homework" (我已经做完作业了)', options: ["finished","finish","finishes","finishing"], answer: 0 },
+      { q: '"I like apples ___ I don\'t like oranges" (我喜欢苹果但不喜欢橙子)', options: ["but","and","or","so"], answer: 0 },
+      { q: '"___ is your birthday?" (你的生日是什么时候?)', options: ["When","What","Where","Who"], answer: 0 },
+      { q: '"Tom has a dog. The dog is brown." - What color is the dog?', options: ["brown","black","white","yellow"], answer: 0 },
+      { q: '正确的顺序是？"school/go/I/to"', options: ["I go to school","go I to school","to school I go","school I go to"], answer: 0 },
+      { q: "如果你想借别人的铅笔，应该说？", options: ["Can I borrow your pencil?","Give me your pencil","I want pencil","Your pencil"], answer: 0 }
+    ]
+  },
+  {
+    name: "关卡 5",
+    title: "高级对话",
+    icon: "🏆",
+    desc: "学术英语和流利表达",
+    color: "#EC4899",
+    timeLimit: 40,
+    passScore: 6,
+    questions: [
+      { q: '"By next year, I ___ English for 5 years" (到明年，我将学英语5年了)', options: ["will have learned","learn","learned","am learning"], answer: 0 },
+      { q: '"The book ___ by many people" (这本书被很多人读过)', options: ["was read","read","reads","reading"], answer: 0 },
+      { q: '"If I ___ rich, I would travel the world" (如果我有钱，我会环游世界)', options: ["were","am","was","be"], answer: 0 },
+      { q: '"The scientist made an important ___" (科学家做出了重要发现)', options: ["discovery","discover","discovered","discovering"], answer: 0 },
+      { q: '短文理解："Climate change affects our environment." 主旨是？', options: ["Environmental issues","Weather","Animals","Plants"], answer: 0 },
+      { q: '"happy" 的同义词是？', options: ["joyful","sad","angry","tired"], answer: 0 },
+      { q: '"___ it was raining, we went hiking" (尽管下雨，我们还是去徒步了)', options: ["Although","Because","So","And"], answer: 0 },
+      { q: '"The reason ___ I like reading is..." (我喜欢阅读的原因是...)', options: ["why","what","which","that"], answer: 0 },
+      { q: "「研究」的英文是？", options: ["research","search","find","study"], answer: 0 },
+      { q: '"What do you think about...?" 这个问题要求你？', options: ["Express your opinion","Say yes","Say no","Repeat"], answer: 0 }
     ]
   }
 ];
@@ -220,11 +220,17 @@ const LEVELS = [
     desc: "宝贝刚刚起步，建议从启蒙绘本和简单口语开始！",
     mainCourses: [
       { name: "51Talk LK-L0", diff: "❤", tag: "零基础启蒙", img: "https://pic2.zhimg.com/100/v2-e845c002c6f251657310ae1f17360e9b_r.jpg" },
-      { name: "启蒙绘本", diff: "❤", tag: "趣味启蒙", img: "https://picx.zhimg.com/100/v2-be7f4ea9c408e80e307940e688c0a3c1_r.jpg" },
-      { name: "Sight Words 高频词", diff: "❤", tag: "高频词认读", img: "https://picx.zhimg.com/100/v2-be7f4ea9c408e80e307940e688c0a3c1_r.jpg" }
+      { name: "牛津自然拼读 Level 1", diff: "❤", tag: "字母发音基础", img: "https://pica.zhimg.com/100/v2-8196e69cce8bae9d1b9febf342de3e00_r.jpg" },
+      { name: "51Talk L0", diff: "❤", tag: "26个字母认知", img: "https://pic2.zhimg.com/100/v2-e845c002c6f251657310ae1f17360e9b_r.jpg" },
+      { name: "Sight Words L1", diff: "❤", tag: "40个基础高频词", img: "https://picx.zhimg.com/100/v2-be7f4ea9c408e80e307940e688c0a3c1_r.jpg" },
+      { name: "Reach鲸鱼 PreK", diff: "❤", tag: "国家地理", img: "https://pic1.zhimg.com/100/v2-a8918cf0e621304ca3ec9f78180dc374_r.jpg" }
     ],
     extraCourses: [
-      { name: "牛津自然拼读", diff: "❤", tag: "搭配拼读", img: "https://pica.zhimg.com/100/v2-8196e69cce8bae9d1b9febf342de3e00_r.jpg" }
+      { name: "小鼠波波 Maisy", diff: "❤", tag: "色彩鲜明、句式极简", img: "https://picx.zhimg.com/100/v2-be7f4ea9c408e80e307940e688c0a3c1_r.jpg" },
+      { name: "波西和皮普", diff: "❤", tag: "日常小故事", img: "https://picx.zhimg.com/100/v2-be7f4ea9c408e80e307940e688c0a3c1_r.jpg" },
+      { name: "小饼干狗 Biscuit", diff: "❤", tag: "温馨日常", img: "https://picx.zhimg.com/100/v2-be7f4ea9c408e80e307940e688c0a3c1_r.jpg" },
+      { name: "Heinemann G0", diff: "❤", tag: "简短句型", img: "https://pic2.zhimg.com/100/v2-2eab0bb08725dcf2692071436bb1c849_r.jpg" },
+      { name: "Oxford Reading Tree Stage 1-2", diff: "❤", tag: "无字书到短句", img: "https://pic1.zhimg.com/100/v2-60399956284eaeb2321af428d2e0c09c_r.jpg" }
     ]
   },
   {
@@ -234,12 +240,17 @@ const LEVELS = [
     desc: "认识字母和简单单词，可以开始简单口语对话了！",
     mainCourses: [
       { name: "51Talk L1-L2", diff: "❤❤", tag: "口语启蒙", img: "https://pic2.zhimg.com/100/v2-e845c002c6f251657310ae1f17360e9b_r.jpg" },
-      { name: "Everybody Up Starter-1", diff: "❤❤", tag: "听说启蒙", img: "https://pic1.zhimg.com/100/v2-469353bfd3aeea904aadefbc8e293330_r.jpg" },
-      { name: "启蒙绘本进阶", diff: "❤❤", tag: "趣味阅读", img: "https://picx.zhimg.com/100/v2-be7f4ea9c408e80e307940e688c0a3c1_r.jpg" }
+      { name: "Everybody Up Starter", diff: "❤❤", tag: "听说启蒙", img: "https://pic1.zhimg.com/100/v2-469353bfd3aeea904aadefbc8e293330_r.jpg" },
+      { name: "牛津自然拼读 Level 2-3", diff: "❤❤", tag: "拼读进阶", img: "https://pica.zhimg.com/100/v2-8196e69cce8bae9d1b9febf342de3e00_r.jpg" },
+      { name: "Kid's Box Starter", diff: "❤❤", tag: "剑桥体系", img: "https://pic3.zhimg.com/100/v2-61c7e4be2b6c8d54b88bcf4a8171ed16_r.jpg" },
+      { name: "Reach鲸鱼 K", diff: "❤❤", tag: "国家地理", img: "https://pic1.zhimg.com/100/v2-a8918cf0e621304ca3ec9f78180dc374_r.jpg" }
     ],
     extraCourses: [
-      { name: "海尼曼分级阅读 G0-G1", diff: "❤", tag: "搭配阅读", img: "https://pic2.zhimg.com/100/v2-2eab0bb08725dcf2692071436bb1c849_r.jpg" },
-      { name: "牛津阅读树 Stage 1-2", diff: "❤", tag: "搭配阅读", img: "https://pic1.zhimg.com/100/v2-60399956284eaeb2321af428d2e0c09c_r.jpg" }
+      { name: "Sight Words L2-L3", diff: "❤❤", tag: "高频词进阶", img: "https://picx.zhimg.com/100/v2-be7f4ea9c408e80e307940e688c0a3c1_r.jpg" },
+      { name: "小猪小象", diff: "❤❤", tag: "对话体为主", img: "https://picx.zhimg.com/100/v2-be7f4ea9c408e80e307940e688c0a3c1_r.jpg" },
+      { name: "Heinemann G1", diff: "❤", tag: "启蒙进阶", img: "https://pic2.zhimg.com/100/v2-2eab0bb08725dcf2692071436bb1c849_r.jpg" },
+      { name: "Oxford Reading Tree Stage 3-4", diff: "❤", tag: "短句到简单故事", img: "https://pic1.zhimg.com/100/v2-60399956284eaeb2321af428d2e0c09c_r.jpg" },
+      { name: "RAZ AA-C", diff: "❤", tag: "零基础阅读", img: "https://pic4.zhimg.com/100/v2-701a2e59b4876965ee4546f6df7fa94d_r.jpg" }
     ]
   },
   {
@@ -250,12 +261,16 @@ const LEVELS = [
     mainCourses: [
       { name: "51Talk L3-L4", diff: "❤❤", tag: "口语进阶", img: "https://pic2.zhimg.com/100/v2-e845c002c6f251657310ae1f17360e9b_r.jpg" },
       { name: "Everybody Up 2-3", diff: "❤❤", tag: "听说进阶", img: "https://pic1.zhimg.com/100/v2-469353bfd3aeea904aadefbc8e293330_r.jpg" },
+      { name: "Power UP 1", diff: "❤❤", tag: "日常句型", img: "https://pic1.zhimg.com/100/v2-f0122c5962cec333a4be44d2df8f886e_r.jpg" },
+      { name: "Kid's Box 1", diff: "❤❤", tag: "剑桥体系", img: "https://pic3.zhimg.com/100/v2-61c7e4be2b6c8d54b88bcf4a8171ed16_r.jpg" },
       { name: "Let's Go 1-2", diff: "❤❤", tag: "牛津经典", img: "https://pic1.zhimg.com/100/v2-5a92edfae23949595766007af256d86c_r.jpg" }
     ],
     extraCourses: [
-      { name: "RAZ 分级阅读 A-D", diff: "❤❤", tag: "搭配阅读", img: "https://pic4.zhimg.com/100/v2-701a2e59b4876965ee4546f6df7fa94d_r.jpg" },
-      { name: "海尼曼 G2", diff: "❤❤", tag: "搭配阅读", img: "https://pic2.zhimg.com/100/v2-2eab0bb08725dcf2692071436bb1c849_r.jpg" },
-      { name: "牛津阅读树 Stage 3-5", diff: "❤❤", tag: "搭配阅读", img: "https://pic1.zhimg.com/100/v2-60399956284eaeb2321af428d2e0c09c_r.jpg" }
+      { name: "Reach鲸鱼 G1", diff: "❤❤❤", tag: "真实世界主题", img: "https://pic1.zhimg.com/100/v2-a8918cf0e621304ca3ec9f78180dc374_r.jpg" },
+      { name: "New Magic K3-G1", diff: "❤❤", tag: "香港朗文", img: "https://pic2.zhimg.com/100/v2-282cfc9b15734a0e4a040b2bfc56eec3_r.jpg" },
+      { name: "Oxford Reading Tree Stage 5-6", diff: "❤❤", tag: "简单故事", img: "https://pic1.zhimg.com/100/v2-60399956284eaeb2321af428d2e0c09c_r.jpg" },
+      { name: "RAZ D-G", diff: "❤❤", tag: "初级阅读", img: "https://pic4.zhimg.com/100/v2-701a2e59b4876965ee4546f6df7fa94d_r.jpg" },
+      { name: "Heinemann G2", diff: "❤❤", tag: "生活场景", img: "https://pic2.zhimg.com/100/v2-2eab0bb08725dcf2692071436bb1c849_r.jpg" }
     ]
   },
   {
@@ -265,13 +280,19 @@ const LEVELS = [
     desc: "能较流利交流和简单阅读，可以挑战更系统的课程了！",
     mainCourses: [
       { name: "51Talk L5-L6", diff: "❤❤❤", tag: "口语高阶", img: "https://pic2.zhimg.com/100/v2-e845c002c6f251657310ae1f17360e9b_r.jpg" },
-      { name: "Kid's Box 1-2", diff: "❤❤❤", tag: "剑桥体系", img: "https://pic3.zhimg.com/100/v2-61c7e4be2b6c8d54b88bcf4a8171ed16_r.jpg" },
-      { name: "Let's Go 3-4", diff: "❤❤❤", tag: "牛津经典", img: "https://pic1.zhimg.com/100/v2-5a92edfae23949595766007af256d86c_r.jpg" },
-      { name: "Power UP 1-2", diff: "❤❤❤", tag: "剑桥进阶", img: "https://pic1.zhimg.com/100/v2-f0122c5962cec333a4be44d2df8f886e_r.jpg" }
+      { name: "Everybody Up 4-5", diff: "❤❤❤", tag: "听说进阶", img: "https://pic1.zhimg.com/100/v2-469353bfd3aeea904aadefbc8e293330_r.jpg" },
+      { name: "Power UP 2-3", diff: "❤❤❤", tag: "剑桥进阶", img: "https://pic1.zhimg.com/100/v2-f0122c5962cec333a4be44d2df8f886e_r.jpg" },
+      { name: "Kid's Box 2-3", diff: "❤❤❤", tag: "剑桥体系", img: "https://pic3.zhimg.com/100/v2-61c7e4be2b6c8d54b88bcf4a8171ed16_r.jpg" },
+      { name: "Let's Go 3-4", diff: "❤❤❤", tag: "牛津经典", img: "https://pic1.zhimg.com/100/v2-5a92edfae23949595766007af256d86c_r.jpg" }
     ],
     extraCourses: [
-      { name: "RAZ 分级阅读 E-J", diff: "❤❤❤", tag: "搭配阅读", img: "https://pic4.zhimg.com/100/v2-701a2e59b4876965ee4546f6df7fa94d_r.jpg" },
-      { name: "牛津阅读树 Stage 6-9", diff: "❤❤❤", tag: "搭配阅读", img: "https://pic1.zhimg.com/100/v2-60399956284eaeb2321af428d2e0c09c_r.jpg" }
+      { name: "Wonder Skills Starter-Basic", diff: "❤❤❤", tag: "高频词+阅读+口语", img: "https://pic2.zhimg.com/100/v2-72543c1e0a72e1f9c77d42dc01b2edfb_r.jpg" },
+      { name: "Reach鲸鱼 G2", diff: "❤❤❤", tag: "国家地理", img: "https://pic1.zhimg.com/100/v2-a8918cf0e621304ca3ec9f78180dc374_r.jpg" },
+      { name: "Oxford Discover Foundation-L1", diff: "❤❤❤", tag: "学科知识", img: "https://pic2.zhimg.com/100/v2-b5a57e839ba580169baffea41c810ba9_r.jpg" },
+      { name: "Oxford Reading Tree Stage 7-9", diff: "❤❤❤", tag: "章节书阅读", img: "https://pic1.zhimg.com/100/v2-60399956284eaeb2321af428d2e0c09c_r.jpg" },
+      { name: "RAZ H-K", diff: "❤❤❤", tag: "中级阅读", img: "https://pic4.zhimg.com/100/v2-701a2e59b4876965ee4546f6df7fa94d_r.jpg" },
+      { name: "New Magic G2-G3", diff: "❤❤", tag: "香港小学", img: "https://pic2.zhimg.com/100/v2-282cfc9b15734a0e4a040b2bfc56eec3_r.jpg" },
+      { name: "小猪佩奇 1-2季", diff: "❤❤❤", tag: "生活场景", img: "https://pic2.zhimg.com/100/v2-c32ccab6a875b12686d3d8f67d5dd54b_qhd.jpg" }
     ]
   },
   {
@@ -280,25 +301,32 @@ const LEVELS = [
     icon: "🏆",
     desc: "流利表达、能读短文，可以挑战学术英语了！",
     mainCourses: [
-      { name: "Oxford Discover", diff: "❤❤❤❤", tag: "国际学校主流", img: "https://pic2.zhimg.com/100/v2-b5a57e839ba580169baffea41c810ba9_r.jpg" },
-      { name: "Wonder Skills", diff: "❤❤❤❤", tag: "麦格劳希尔", img: "https://pic2.zhimg.com/100/v2-72543c1e0a72e1f9c77d42dc01b2edfb_r.jpg" },
-      { name: "Think Starter-L1", diff: "❤❤❤❤", tag: "剑桥考试对标", img: "https://pic4.zhimg.com/100/v2-4c1b176b3793bd26bd5d3d93bc2a7643_r.jpg" }
+      { name: "51Talk L7-L9", diff: "❤❤❤❤", tag: "学术冲刺", img: "https://pic2.zhimg.com/100/v2-e845c002c6f251657310ae1f17360e9b_r.jpg" },
+      { name: "Power UP 4-5", diff: "❤❤❤❤", tag: "KET/PET备考", img: "https://pic1.zhimg.com/100/v2-f0122c5962cec333a4be44d2df8f886e_r.jpg" },
+      { name: "Oxford Discover L2-L4", diff: "❤❤❤❤", tag: "学科知识+批判思维", img: "https://pic2.zhimg.com/100/v2-b5a57e839ba580169baffea41c810ba9_r.jpg" },
+      { name: "Wonder Skills Intermediate-Master", diff: "❤❤❤❤", tag: "阅读+思维+应试", img: "https://pic2.zhimg.com/100/v2-72543c1e0a72e1f9c77d42dc01b2edfb_r.jpg" },
+      { name: "Think Starter-L1", diff: "❤❤❤❤", tag: "剑桥青少年", img: "https://pic4.zhimg.com/100/v2-4c1b176b3793bd26bd5d3d93bc2a7643_r.jpg" }
     ],
     extraCourses: [
-      { name: "RAZ 分级阅读 K-P", diff: "❤❤❤", tag: "搭配阅读", img: "https://pic4.zhimg.com/100/v2-701a2e59b4876965ee4546f6df7fa94d_r.jpg" },
-      { name: "新概念英语 1册", diff: "❤❤❤", tag: "经典体系", img: "https://pic3.zhimg.com/100/v2-17223af8dc17bc57ff10bd1f59edcd1e_r.jpg" }
+      { name: "Wonders GK-G2", diff: "❤❤❤❤", tag: "美国小学", img: "https://pic4.zhimg.com/100/v2-e52a963ebb73e5dc9913e3ae985f6489_r.jpg" },
+      { name: "Look L1-L3", diff: "❤❤❤", tag: "国家地理", img: "https://pic2.zhimg.com/100/v2-1bf482eab5462ad40338a6fc43b59dc7_r.jpg" },
+      { name: "Cambridge Global English L1-L4", diff: "❤❤❤", tag: "跨学科学习", img: "https://pic4.zhimg.com/100/v2-68d203b414265a7975889596a0f51693_r.jpg" },
+      { name: "RAZ L-P", diff: "❤❤❤", tag: "中高级阅读", img: "https://pic4.zhimg.com/100/v2-701a2e59b4876965ee4546f6df7fa94d_r.jpg" },
+      { name: "Oxford Reading Tree Stage 10-12", diff: "❤❤❤❤", tag: "高阶章节书", img: "https://pic1.zhimg.com/100/v2-60399956284eaeb2321af428d2e0c09c_r.jpg" },
+      { name: "新概念英语 第1册", diff: "❤❤❤", tag: "经典教材", img: "https://pic3.zhimg.com/100/v2-17223af8dc17bc57ff10bd1f59edcd1e_r.jpg" },
+      { name: "Side by Side 1-2", diff: "❤❤❤", tag: "真实沟通场景", img: "https://pica.zhimg.com/100/v2-2f2158f0293b80697c256cee2d5b67dc_r.jpg" },
+      { name: "Free Talk", diff: "❤❤❤", tag: "开放式口语", img: "https://pic3.zhimg.com/100/v2-f2eb1a48ce641d8c02720f09cd7af004_r.jpg" }
     ]
   }
 ];
 
 const app = document.getElementById("app");
-let state = { screen: "welcome", stage: 0, qIndex: 0, scores: [0,0,0,0], timer: 0, timerRef: null, totalCorrect: 0, totalAnswered: 0, vocabKnown: 0, vocabFake: 0, vocabResults: [] };
+let state = { screen: "welcome", stage: 0, qIndex: 0, scores: [0,0,0,0,0], timer: 0, timerRef: null, totalCorrect: 0, totalAnswered: 0 };
 
 function render() {
   if (state.screen === "welcome") renderWelcome();
   else if (state.screen === "stage-intro") renderStageIntro();
   else if (state.screen === "quiz") renderQuiz();
-  else if (state.screen === "vocab") renderVocab();
   else if (state.screen === "result") renderResult();
 }
 
@@ -308,25 +336,28 @@ function renderWelcome() {
       <a href="../index.html" style="position:absolute;top:16px;left:16px;color:rgba(255,255,255,.8);text-decoration:none;font-size:14px;font-weight:600">← 首页</a>
       <div style="font-size:64px;margin-bottom:16px">📝</div>
       <h1>英语水平测试</h1>
-      <p class="subtitle">4 个趣味关卡，快速了解英语水平<br>测完为你推荐最适合的课程</p>
+      <p class="subtitle">5 个趣味关卡，快速了解英语水平<br>测完为你推荐最适合的课程</p>
       <div class="features">
         <div><span class="icon">⏱️</span><span>5-8 分钟</span></div>
         <div><span class="icon">🎯</span><span>自适应难度</span></div>
         <div><span class="icon">📚</span><span>精准推荐</span></div>
+      </div>
+      <div style="background:rgba(255,255,255,0.15);border-radius:12px;padding:12px 16px;margin-bottom:24px;font-size:13px;line-height:1.6;backdrop-filter:blur(8px)">
+        💡 <strong>小提示：</strong>如果孩子还不认字，家长可以读题给孩子听，孩子口头回答后帮忙点击选项
       </div>
       <button class="btn btn-start" onclick="startTest()">开始测试</button>
     </div>`;
 }
 
 function startTest() {
-  state = { screen: "stage-intro", stage: 0, qIndex: 0, scores: [0,0,0,0], timer: 0, timerRef: null, totalCorrect: 0, totalAnswered: 0, vocabKnown: 0, vocabFake: 0, vocabResults: [] };
+  state = { screen: "stage-intro", stage: 0, qIndex: 0, scores: [0,0,0,0,0], timer: 0, timerRef: null, totalCorrect: 0, totalAnswered: 0 };
   render();
 }
 
 function renderStageIntro() {
   const s = STAGES[state.stage];
-  const count = s.mode === "vocab" ? s.words.length + " 个单词" : s.questions.length + " 题";
-  const timeDesc = s.mode === "vocab" ? `每词 ${s.timeLimit} 秒` : `每题 ${s.timeLimit} 秒`;
+  const count = s.questions.length + " 题";
+  const timeDesc = `每题 ${s.timeLimit} 秒`;
   app.innerHTML = `
     <div class="screen active stage-intro animate-fade">
       <div class="stage-icon">${s.icon}</div>
@@ -337,16 +368,8 @@ function renderStageIntro() {
 }
 
 function startStage() {
-  const s = STAGES[state.stage];
   state.qIndex = 0;
-  if (s.mode === "vocab") {
-    state.screen = "vocab";
-    state.vocabKnown = 0;
-    state.vocabFake = 0;
-    state.vocabResults = [];
-  } else {
-    state.screen = "quiz";
-  }
+  state.screen = "quiz";
   render();
 }
 
@@ -360,8 +383,7 @@ function startTimer() {
     updateTimerDisplay();
     if (state.timer <= 0) {
       clearInterval(state.timerRef);
-      if (state.screen === "vocab") handleVocab(false);
-      else handleAnswer(-1);
+      handleAnswer(-1);
     }
   }, 1000);
 }
@@ -381,11 +403,6 @@ function renderQuiz() {
   const progress = ((state.qIndex) / totalQ) * 100;
   const letters = ["A","B","C","D"];
 
-  let displayHTML = "";
-  if (q.displayStyle === "letter") {
-    displayHTML = `<div class="q-emoji" style="font-family:serif;font-weight:900;font-size:72px;color:${s.color}">${q.display}</div>`;
-  }
-
   app.innerHTML = `
     <div class="progress-bar">
       <span class="stage-label" style="color:${s.color}">${s.name}</span>
@@ -397,7 +414,6 @@ function renderQuiz() {
     <div class="screen active quiz" style="padding-top:12px">
       <div class="question-card">
         <div class="q-number">第 ${state.qIndex + 1} / ${totalQ} 题</div>
-        ${displayHTML}
         <div class="q-text">${q.q}</div>
       </div>
       <div class="options" id="options">
@@ -410,69 +426,6 @@ function renderQuiz() {
       </div>
     </div>`;
   startTimer();
-}
-
-function renderVocab() {
-  const s = STAGES[state.stage];
-  const w = s.words[state.qIndex];
-  const total = s.words.length;
-  const progress = (state.qIndex / total) * 100;
-
-  let dots = "";
-  for (let i = 0; i < total; i++) {
-    let cls = "vocab-dot";
-    if (i < state.vocabResults.length) cls += state.vocabResults[i] ? " know" : " dunno";
-    else if (i === state.qIndex) cls += " current";
-    dots += `<span class="${cls}"></span>`;
-  }
-
-  app.innerHTML = `
-    <div class="progress-bar">
-      <span class="stage-label" style="color:${s.color}">${s.name}</span>
-      <div class="progress-track">
-        <div class="progress-fill" style="width:${progress}%;background:${s.color}"></div>
-      </div>
-      <span class="timer" id="timer">${s.timeLimit}s</span>
-    </div>
-    <div class="screen active quiz" style="padding-top:12px">
-      <div class="question-card" style="text-align:center">
-        <div class="q-number">第 ${state.qIndex + 1} / ${total} 个单词</div>
-        <div class="q-hint">你认识这个单词吗？</div>
-        <div class="vocab-word">${w.word}</div>
-        <div class="vocab-progress">${dots}</div>
-      </div>
-      <div class="vocab-btns">
-        <button class="btn-dunno" onclick="handleVocab(false)">✗ 不认识</button>
-        <button class="btn-know" onclick="handleVocab(true)">✓ 认识</button>
-      </div>
-    </div>`;
-  startTimer();
-}
-
-function handleVocab(know) {
-  clearInterval(state.timerRef);
-  const s = STAGES[state.stage];
-  const w = s.words[state.qIndex];
-
-  state.vocabResults.push(know);
-
-  if (know && w.real) {
-    state.vocabKnown++;
-  } else if (know && !w.real) {
-    state.vocabFake++;
-  }
-
-  state.totalAnswered++;
-  state.qIndex++;
-
-  if (state.qIndex >= s.words.length) {
-    let score = Math.max(0, state.vocabKnown - state.vocabFake * 3);
-    state.scores[state.stage] = score;
-    state.totalCorrect += score;
-    finishStage();
-  } else {
-    render();
-  }
 }
 
 function handleAnswer(idx) {
@@ -539,8 +492,8 @@ function renderResult() {
   for (let i = 0; i < stagesCompleted && i < STAGES.length; i++) {
     const s = STAGES[i];
     const passed = state.scores[i] >= s.passScore;
-    const total = s.mode === "vocab" ? s.words.filter(w => w.real).length : s.questions.length;
-    const label = s.mode === "vocab" ? "词汇认知" : s.title;
+    const total = s.questions.length;
+    const label = s.title;
     statsHTML += `<div><span class="stat-num">${state.scores[i]}/${total}</span><span class="stat-label">${label} ${passed ? "✅" : ""}</span></div>`;
   }
 
@@ -573,14 +526,13 @@ function courseCard(c, type) {
     ? '<span class="recommend-label label-main">推荐主课</span>'
     : '<span class="recommend-label label-extra">搭配阅读</span>';
 
-  // 根据level确定跳转的章节
   const levelIdx = getLevel();
-  let section = 'section-1'; // 默认启蒙阶段
-  if (levelIdx === 0) section = 'section-1'; // 零基础 → 启蒙
-  else if (levelIdx === 1) section = 'section-1'; // 字母基础 → 启蒙
-  else if (levelIdx === 2) section = 'section-2'; // 简单对话 → 进阶
-  else if (levelIdx === 3) section = 'section-2'; // 流利对话 → 进阶
-  else section = 'section-3'; // 高级对话 → 拔高
+  let section = 'section-1';
+  if (levelIdx === 0) section = 'section-1';
+  else if (levelIdx === 1) section = 'section-1';
+  else if (levelIdx === 2) section = 'section-2';
+  else if (levelIdx === 3) section = 'section-2';
+  else section = 'section-3';
 
   return `
     <a href="courseware.html#${section}" class="course-card" style="text-decoration:none;color:inherit">
