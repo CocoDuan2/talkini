@@ -3,560 +3,780 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Talkini - 英语课件推荐与水平测试</title>
+<title>Talkini - 英语口语课程</title>
 <link rel="icon" type="image/jpeg" href="img/talkini_logo.jpg">
-<meta name="description" content="Talkini提供科学的英语水平测试和精准的课件推荐，帮助孩子找到最适合的英语学习课程">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta name="description" content="Talkini 提供专业英语口语课程，科学的水平测试和精准的课件推荐">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --primary: #2563EB;
-  --primary-dark: #1E40AF;
-  --accent: #F59E0B;
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-tertiary: #94A3B8;
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #F8FAFC;
+  --blue: #2563EB;
+  --blue-dark: #1E40AF;
+  --blue-light: #EEF2FF;
+  --purple: #7C3AED;
+  --green: #059669;
+  --green-light: #D1FAE5;
+  --orange: #F59E0B;
+  --orange-light: #FEF3C7;
+  --pink: #EC4899;
+  --pink-light: #FCE7F3;
+  --text: #0F172A;
+  --text-2: #334155;
+  --text-3: #64748B;
+  --bg: #F0F4FF;
+  --white: #FFFFFF;
   --border: #E2E8F0;
+  --radius: 24px;
+  --radius-sm: 16px;
 }
+
+html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--bg-secondary);
-  color: var(--text-primary);
+  font-family: 'Nunito', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
+/* ===== FLOATING SHAPES (decorative) ===== */
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: float 6s ease-in-out infinite;
+}
+.shape-1 { width: 80px; height: 80px; background: rgba(245,158,11,0.2); top: 12%; right: 8%; animation-delay: 0s; }
+.shape-2 { width: 50px; height: 50px; background: rgba(236,72,153,0.15); top: 40%; right: 15%; animation-delay: 1.5s; }
+.shape-3 { width: 100px; height: 100px; background: rgba(124,58,237,0.12); bottom: 20%; left: 3%; animation-delay: 0.8s; }
+.shape-4 { width: 60px; height: 60px; background: rgba(37,99,235,0.15); top: 70%; right: 5%; animation-delay: 2s; }
+.shape-star { position: absolute; font-size: 28px; pointer-events: none; animation: float 5s ease-in-out infinite; }
+.shape-star-1 { top: 18%; left: 5%; animation-delay: 0.3s; }
+.shape-star-2 { top: 55%; right: 3%; animation-delay: 1.2s; font-size: 20px; }
+.shape-star-3 { bottom: 30%; left: 8%; animation-delay: 2.5s; font-size: 22px; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-16px) rotate(8deg); }
 }
 
-/* Hero Section */
+/* ===== HEADER ===== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(240, 244, 255, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 2px solid rgba(37,99,235,0.1);
+  padding: 12px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 2px solid rgba(37,99,235,0.2);
+}
+
+.logo-text {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--blue);
+  letter-spacing: -0.5px;
+}
+
+.header-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.hbtn {
+  padding: 9px 22px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.hbtn-outline {
+  background: var(--white);
+  color: var(--blue);
+  border: 2px solid var(--blue);
+}
+.hbtn-outline:hover { background: var(--blue-light); transform: translateY(-2px); }
+
+.hbtn-fill {
+  background: var(--blue);
+  color: var(--white);
+  box-shadow: 0 4px 14px rgba(37,99,235,0.35);
+}
+.hbtn-fill:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.45); }
+
+/* ===== HERO ===== */
 .hero {
-  background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
   position: relative;
   overflow: hidden;
-  padding: 60px 0 100px;
+  padding: 64px 32px 80px;
+  background: linear-gradient(160deg, #EEF2FF 0%, #F0F4FF 40%, #FEF3C7 100%);
 }
 
 .hero::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(255,255,255,0.08) 0%, transparent 50%);
+  top: -120px; right: -120px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%);
 }
 
-.hero-content {
-  position: relative;
-  z-index: 1;
-  max-width: 800px;
-  margin: 0 auto;
-  color: white;
-}
-
-.hero-top {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  margin-bottom: 32px;
-}
-
-.hero-logo img {
-  width: 88px;
-  height: 88px;
-  border-radius: 22px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
-  border: 3px solid rgba(255,255,255,0.2);
-}
-
-.hero-title {
-  flex: 1;
-}
-
-.hero h1 {
-  font-size: 48px;
-  font-weight: 800;
-  letter-spacing: -1.5px;
-  margin-bottom: 8px;
-}
-
-.hero-subtitle {
-  font-size: 18px;
-  font-weight: 400;
-  opacity: 0.95;
-  margin-bottom: 40px;
-  line-height: 1.6;
-}
-
-.hero-stats {
-  display: flex;
-  justify-content: center;
-  gap: 48px;
-  animation: fadeInUp 0.8s ease 0.3s backwards;
-}
-
-.stat-item {
-  text-align: center;
-}
-
-.stat-number {
-  font-size: 36px;
-  font-weight: 700;
-  display: block;
-  margin-bottom: 4px;
-}
-
-.stat-label {
-  font-size: 14px;
-  opacity: 0.9;
-  font-weight: 500;
-}
-
-/* Main Content */
-.main-content {
-  margin-top: -60px;
-  position: relative;
-  z-index: 2;
-  padding-bottom: 80px;
-}
-
-.content-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 48px;
-}
-
-/* Feature Cards */
-.feature-card {
-  background: white;
-  border-radius: 24px;
-  padding: 48px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid var(--border);
-  position: relative;
-  overflow: hidden;
-}
-
-.feature-card::before {
+.hero::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
+  bottom: -80px; left: -80px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%);
 }
 
-.feature-card:hover::before {
-  transform: scaleX(1);
-}
-
-.feature-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-  border-color: var(--primary);
-}
-
-.feature-icon {
-  width: 72px;
-  height: 72px;
-  border-radius: 18px;
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 36px;
+  gap: 60px;
+}
+
+.hero-left { flex: 1; min-width: 0; }
+
+.hero-right {
+  flex-shrink: 0;
+  width: 360px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  border: 2px solid rgba(37,99,235,0.2);
+  border-radius: 50px;
+  padding: 7px 18px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--blue);
   margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(37,99,235,0.1);
+  animation: fadeInUp 0.5s ease backwards;
+}
+
+.hero-badge-emoji { font-size: 16px; }
+
+.hero-h1 {
+  font-size: clamp(38px, 5.5vw, 68px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  color: var(--text);
+  margin-bottom: 20px;
+  animation: fadeInUp 0.5s ease 0.1s backwards;
+}
+
+.hero-h1 .highlight {
+  color: var(--blue);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-logo-inline {
+  width: 0.85em;
+  height: 0.85em;
+  border-radius: 22%;
+  vertical-align: middle;
+  border: 3px solid rgba(37,99,235,0.2);
+  box-shadow: 0 4px 14px rgba(37,99,235,0.2);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.hero-h1 .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--orange), #FCD34D);
+  border-radius: 3px;
+  z-index: -1;
+}
+
+.hero-desc {
+  font-size: 18px;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 36px;
+  font-weight: 600;
+  animation: fadeInUp 0.5s ease 0.2s backwards;
+  max-width: 480px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.5s ease 0.3s backwards;
+}
+
+.btn-big {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-size: 17px;
+  font-weight: 900;
+  text-decoration: none;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.25s ease;
+}
+
+.btn-primary-big {
+  background: var(--blue);
+  color: var(--white);
+  box-shadow: 0 6px 24px rgba(37,99,235,0.4);
+}
+.btn-primary-big:hover {
+  background: var(--blue-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(37,99,235,0.5);
+}
+
+.btn-secondary-big {
+  background: var(--white);
+  color: var(--text);
+  border: 2.5px solid var(--border);
+}
+.btn-secondary-big:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  transform: translateY(-3px);
+}
+
+/* Hero right — visual block */
+.hero-right {
+  flex-shrink: 0;
+  width: 360px;
+  animation: fadeInUp 0.5s ease 0.2s backwards;
+}
+
+.hero-visual {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: 0 12px 48px rgba(37,99,235,0.12);
+  border: 2px solid rgba(37,99,235,0.1);
   position: relative;
 }
 
-.feature-card-primary .feature-icon {
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  box-shadow: 0 8px 24px rgba(37,99,235,0.3);
-}
-
-.feature-card-secondary .feature-icon {
-  background: linear-gradient(135deg, #10B981, #059669);
-  box-shadow: 0 8px 24px rgba(16,185,129,0.3);
-}
-
-.feature-title {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  letter-spacing: -0.5px;
-}
-
-.feature-description {
-  font-size: 16px;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: 24px;
-}
-
-.feature-meta {
-  display: flex;
-  gap: 24px;
-  font-size: 14px;
-  color: var(--text-tertiary);
-}
-
-.feature-meta-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.feature-meta-item i {
-  color: var(--accent);
-}
-
-/* Benefits Section */
-.benefits-section {
-  background: white;
-  border-radius: 24px;
-  padding: 48px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-  border: 1px solid var(--border);
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 48px;
-}
-
-.section-label {
-  display: inline-block;
-  padding: 6px 16px;
-  background: linear-gradient(135deg, #EEF2FF, #E0E7FF);
-  color: var(--primary);
-  border-radius: 20px;
+.hv-title {
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 800;
+  color: var(--text-3);
+  letter-spacing: 1px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
   margin-bottom: 16px;
 }
 
-.section-title {
-  font-size: 36px;
-  font-weight: 700;
-  letter-spacing: -1px;
-  margin-bottom: 12px;
+.hv-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.section-description {
-  font-size: 18px;
-  color: var(--text-secondary);
-  max-width: 600px;
+.hv-level {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  transition: all 0.2s;
+}
+
+.hv-level:hover { transform: translateX(4px); }
+.hv-level-icon { font-size: 20px; width: 32px; text-align: center; }
+.hv-level-name { font-size: 14px; font-weight: 800; color: var(--text); flex: 1; }
+.hv-level-bar { height: 6px; border-radius: 3px; flex: 2; background: var(--border); overflow: hidden; }
+.hv-level-fill { height: 100%; border-radius: 3px; }
+
+.fill-1 { width: 20%; background: linear-gradient(90deg, #10B981, #34D399); }
+.fill-2 { width: 40%; background: linear-gradient(90deg, #3B82F6, #60A5FA); }
+.fill-3 { width: 60%; background: linear-gradient(90deg, #8B5CF6, #A78BFA); }
+.fill-4 { width: 80%; background: linear-gradient(90deg, #F59E0B, #FCD34D); }
+.fill-5 { width: 100%; background: linear-gradient(90deg, #EC4899, #F472B6); }
+
+.hv-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 2px dashed var(--border);
+  display: flex;
+  gap: 12px;
+}
+
+.hv-stat {
+  flex: 1;
+  text-align: center;
+}
+
+.hv-stat-num {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--blue);
+  display: block;
+}
+
+.hv-stat-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-3);
+}
+
+/* ===== FEATURES ===== */
+.features {
+  padding: 70px 32px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
-.benefits-grid {
+.sec-h2 {
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 900;
+  color: var(--text);
+  letter-spacing: -1px;
+  margin-bottom: 48px;
+  line-height: 1.2;
+}
+
+.feat-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  grid-template-columns: repeat(2, minmax(0, 520px));
+  gap: 24px;
+  justify-content: center;
 }
 
-.benefit-item {
-  text-align: center;
+.feat-card {
+  border-radius: var(--radius);
+  padding: 40px;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+  overflow: hidden;
+  border: 2.5px solid transparent;
 }
 
-.benefit-icon {
-  width: 64px;
-  height: 64px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #F0F9FF, #E0F2FE);
+.feat-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(37,99,235,0.2);
+}
+
+.feat-card-blue {
+  background: linear-gradient(135deg, #1E40AF 0%, #2563EB 60%, #3B82F6 100%);
+  box-shadow: 0 8px 32px rgba(37,99,235,0.3);
+}
+.feat-card-blue:hover { box-shadow: 0 20px 60px rgba(37,99,235,0.45); }
+
+.feat-card-light {
+  background: var(--white);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+.feat-card-light:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.12); }
+
+/* Decorative dots on dark card */
+.feat-card-blue::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+}
+.feat-card-blue::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; left: 50px;
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+}
+
+.feat-step {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.feat-card-blue .feat-step { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); }
+.feat-card-light .feat-step { background: var(--blue-light); color: var(--blue); }
+
+.feat-icon { display: block; position: relative; z-index: 1; flex-shrink: 0; line-height: 1; }
+
+.feat-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+}
+
+.feat-header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin: 0 auto 20px;
-  font-size: 28px;
+  gap: 16px;
 }
 
-.benefit-title {
-  font-size: 18px;
+.feat-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.feat-title {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+.feat-card-blue .feat-title { color: var(--white); }
+.feat-card-light .feat-title { color: var(--text); }
+
+.feat-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 28px;
   font-weight: 600;
-  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+.feat-card-blue .feat-desc { color: rgba(255,255,255,0.75); }
+.feat-card-light .feat-desc { color: var(--text-2); }
+
+.feat-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 
-.benefit-description {
-  font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.6;
+.ftag {
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 800;
 }
+.feat-card-blue .ftag { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); }
+.feat-card-light .ftag { background: var(--bg); color: var(--text-2); }
 
-/* Footer */
+/* ===== FOOTER ===== */
 .footer {
-  text-align: center;
-  padding: 48px 24px;
-  color: var(--text-tertiary);
-  font-size: 14px;
+  padding: 32px;
+  border-top: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: var(--white);
 }
 
-.footer-brand {
-  font-weight: 600;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-/* Animations */
+.footer-logo img {
+  width: 32px; height: 32px;
+  border-radius: 10px;
+  border: 2px solid var(--border);
+}
+
+.footer-brand { font-size: 16px; font-weight: 900; color: var(--text); }
+.footer-copy { font-size: 13px; color: var(--text-3); font-weight: 600; }
+
+/* ===== ANIMATIONS ===== */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .container {
-    padding: 0 20px;
-  }
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.in { opacity: 1; transform: none; }
 
-  .hero {
-    padding: 40px 0 64px;
-  }
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .hero-inner { gap: 40px; }
+  .hero-right { width: 320px; }
+  .feat-card { padding: 32px 28px; }
+}
 
-  .hero-top {
-    gap: 12px;
-  }
+@media (max-width: 900px) {
+  .header { padding: 12px 20px; }
+  .hero { padding: 48px 20px 52px; }
+  .hero-inner { flex-direction: column; gap: 32px; }
+  .hero-right { width: 100%; max-width: 100%; }
+  .features { padding: 40px 20px; }
+  .feat-grid { grid-template-columns: 1fr; }
+  .footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+  .shape, .shape-star { display: none; }
+}
 
-  .hero-logo img {
-    width: 56px;
-    height: 56px;
-    border-radius: 14px;
-  }
+@media (max-width: 520px) {
+  /* Header */
+  .hbtn-outline { display: none; }
 
-  .hero h1 {
-    font-size: 28px;
-    letter-spacing: -1px;
-  }
+  /* Hero */
+  .hero { padding: 40px 20px 48px; }
+  .hero-badge { font-size: 12px; padding: 6px 14px; }
+  .hero-h1 { font-size: 36px; letter-spacing: -1px; }
+  .hero-desc { font-size: 15px; }
+  .hero-actions { flex-direction: column; gap: 10px; }
+  .btn-big { width: 100%; justify-content: center; padding: 15px 24px; font-size: 16px; }
 
-  .hero-subtitle {
-    font-size: 14px;
-    margin-bottom: 32px;
-  }
+  /* Hero visual — 手机上隐藏进度条卡，只显示底部统计数字 */
+  .hv-levels { display: none; }
+  .hv-title { display: none; }
+  .hero-visual { padding: 20px; }
+  .hv-footer { margin-top: 0; padding-top: 0; border-top: none; }
+  .hv-stat-num { font-size: 28px; }
+  .hv-stat-label { font-size: 12px; }
 
-  .hero-stats {
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  .stat-number {
-    font-size: 24px;
-  }
-
-  .stat-label {
-    font-size: 12px;
-  }
-
-  .main-content {
-    margin-top: -40px;
-    padding-bottom: 48px;
-  }
-
-  .content-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .feature-card {
-    padding: 28px 24px;
-  }
-
-  .feature-icon {
-    width: 56px;
-    height: 56px;
-    font-size: 28px;
-    margin-bottom: 20px;
-  }
-
-  .feature-title {
-    font-size: 22px;
-  }
-
-  .feature-description {
-    font-size: 15px;
-  }
-
-  .feature-meta {
-    gap: 16px;
-    font-size: 13px;
-  }
-
-  .benefits-section {
-    padding: 32px 20px;
-  }
-
-  .section-label {
-    font-size: 12px;
-  }
-
-  .section-title {
-    font-size: 24px;
-  }
-
-  .section-description {
-    font-size: 15px;
-  }
-
-  .benefits-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .benefit-icon {
-    width: 56px;
-    height: 56px;
-    font-size: 24px;
-  }
-
-  .benefit-title {
-    font-size: 16px;
-  }
-
-  .benefit-description {
-    font-size: 13px;
-  }
+  /* Feature cards */
+  .features { padding: 32px 16px; }
+  .sec-h2 { font-size: 24px; margin-bottom: 24px; }
+  .feat-card { padding: 28px 22px; }
+  .feat-title { font-size: 22px; }
+  .feat-desc { font-size: 14px; }
+  .feat-tags { gap: 6px; }
+  .ftag { font-size: 12px; padding: 5px 11px; }
 }
 </style>
 </head>
 <body>
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-top">
-          <div class="hero-logo">
-            <img src="img/talkini_logo.jpg" alt="Talkini">
+
+<!-- Floating decorations -->
+<div class="shape shape-1"></div>
+<div class="shape shape-2"></div>
+<div class="shape shape-3"></div>
+<div class="shape shape-4"></div>
+<span class="shape-star shape-star-1">⭐</span>
+<span class="shape-star shape-star-2">✨</span>
+<span class="shape-star shape-star-3">🌟</span>
+
+<!-- Header -->
+<header class="header">
+  <a href="#" class="logo">
+    <img src="img/talkini_logo.jpg" alt="Talkini">
+    <span class="logo-text">Talkini</span>
+  </a>
+  <div class="header-btns">
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <h1 class="hero-h1">
+        学好英语<br>
+        从<span class="highlight">Talkini</span>开始
+      </h1>
+
+      <p class="hero-desc">
+        专业口语课程 · 科学测评 · 精准匹配，找到最适合你的英语学习路径
+      </p>
+
+      <div class="hero-actions">
+        <a href="pages/level-test.html" class="btn-big btn-primary-big">
+          🎯 测测我的水平
+        </a>
+        <a href="pages/courseware.html" class="btn-big btn-secondary-big">
+          📚 看看课件推荐
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-visual">
+        <div class="hv-title">🎓 5 个学习阶段，全程覆盖</div>
+        <div class="hv-levels">
+          <div class="hv-level">
+            <span class="hv-level-icon">🌱</span>
+            <span class="hv-level-name">零基础</span>
+            <div class="hv-level-bar"><div class="hv-level-fill fill-1"></div></div>
           </div>
-          <div class="hero-title">
-            <h1>Talkini</h1>
-            <p class="hero-subtitle">科学测评 · 精准推荐 · 找到最适合孩子的英语课程</p>
+          <div class="hv-level">
+            <span class="hv-level-icon">🔤</span>
+            <span class="hv-level-name">字母基础</span>
+            <div class="hv-level-bar"><div class="hv-level-fill fill-2"></div></div>
+          </div>
+          <div class="hv-level">
+            <span class="hv-level-icon">💬</span>
+            <span class="hv-level-name">简单对话</span>
+            <div class="hv-level-bar"><div class="hv-level-fill fill-3"></div></div>
+          </div>
+          <div class="hv-level">
+            <span class="hv-level-icon">🗣️</span>
+            <span class="hv-level-name">流利对话</span>
+            <div class="hv-level-bar"><div class="hv-level-fill fill-4"></div></div>
+          </div>
+          <div class="hv-level">
+            <span class="hv-level-icon">🏆</span>
+            <span class="hv-level-name">高级对话</span>
+            <div class="hv-level-bar"><div class="hv-level-fill fill-5"></div></div>
           </div>
         </div>
-        <div class="hero-stats">
-          <div class="stat-item">
-            <span class="stat-number">40+</span>
-            <span class="stat-label">精选课件</span>
+        <div class="hv-footer">
+          <div class="hv-stat">
+            <span class="hv-stat-num">40+</span>
+            <span class="hv-stat-label">精选课件</span>
           </div>
-          <div class="stat-item">
-            <span class="stat-number">5分钟</span>
-            <span class="stat-label">快速测评</span>
+          <div class="hv-stat">
+            <span class="hv-stat-num">5级</span>
+            <span class="hv-stat-label">能力分级</span>
           </div>
-          <div class="stat-item">
-            <span class="stat-number">4级</span>
-            <span class="stat-label">能力分级</span>
+          <div class="hv-stat">
+            <span class="hv-stat-num">5min</span>
+            <span class="hv-stat-label">快速测评</span>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Main Content -->
-  <section class="main-content">
-    <div class="container">
-      <div class="content-grid">
-        <!-- Test Card -->
-        <a href="pages/level-test.html" class="feature-card feature-card-primary">
-          <div class="feature-icon">
-            <i class="fas fa-clipboard-check" style="color: white;"></i>
-          </div>
-          <h2 class="feature-title">英语水平测试</h2>
-          <p class="feature-description">通过4个趣味关卡，科学评估孩子的英语能力，为您精准推荐最适合的学习课程</p>
-          <div class="feature-meta">
-            <span class="feature-meta-item">
-              <i class="fas fa-clock"></i>
-              5分钟完成
-            </span>
-            <span class="feature-meta-item">
-              <i class="fas fa-chart-line"></i>
-              智能定级
-            </span>
-          </div>
-        </a>
+<!-- Features -->
+<section class="features">
+  <h2 class="sec-h2">两大核心功能</h2>
 
-        <!-- Courseware Card -->
-        <a href="pages/courseware.html" class="feature-card feature-card-secondary">
-          <div class="feature-icon">
-            <i class="fas fa-book-open" style="color: white;"></i>
-          </div>
-          <h2 class="feature-title">课件推荐</h2>
-          <p class="feature-description">涵盖启蒙、进阶、拔高、成人四大阶段，40+套精选课件，详细介绍与科学选课指南</p>
-          <div class="feature-meta">
-            <span class="feature-meta-item">
-              <i class="fas fa-layer-group"></i>
-              分级体系
-            </span>
-            <span class="feature-meta-item">
-              <i class="fas fa-star"></i>
-              权威教材
-            </span>
-          </div>
-        </a>
-      </div>
-
-      <!-- Benefits Section -->
-      <div class="benefits-section">
-        <div class="section-header">
-          <span class="section-label">为什么选择 Talkini</span>
-          <h2 class="section-title">让英语学习更科学、更高效</h2>
-          <p class="section-description">基于科学的分级体系和专业的课程推荐，帮助每个孩子找到最适合的学习路径</p>
+  <div class="feat-grid">
+    <a href="pages/level-test.html" class="feat-card feat-card-blue reveal">
+      <div class="feat-inner">
+        <div class="feat-header">
+          <span class="feat-icon">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="28" cy="28" r="24" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+              <circle cx="28" cy="28" r="16" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+              <circle cx="28" cy="28" r="8" fill="white" opacity="0.9"/>
+              <circle cx="28" cy="28" r="3.5" fill="#2563EB"/>
+              <line x1="28" y1="4" x2="28" y2="20" stroke="rgba(255,255,255,0.7)" stroke-width="2.5" stroke-linecap="round"/>
+              <polygon points="28,2 25,8 31,8" fill="rgba(255,255,255,0.7)"/>
+              <ellipse cx="16" cy="36" rx="4" ry="2.5" fill="rgba(255,180,180,0.4)"/>
+              <ellipse cx="40" cy="36" rx="4" ry="2.5" fill="rgba(255,180,180,0.4)"/>
+              <circle cx="23" cy="27" r="1.8" fill="rgba(255,255,255,0.8)"/>
+              <circle cx="33" cy="27" r="1.8" fill="rgba(255,255,255,0.8)"/>
+            </svg>
+          </span>
+          <h2 class="feat-title">测测你的英语水平</h2>
         </div>
-        <div class="benefits-grid">
-          <div class="benefit-item">
-            <div class="benefit-icon">🎯</div>
-            <h3 class="benefit-title">精准定级</h3>
-            <p class="benefit-description">4关卡测试体系，从词汇到阅读全面评估，准确定位孩子的英语水平</p>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-icon">📚</div>
-            <h3 class="benefit-title">权威课件</h3>
-            <p class="benefit-description">精选牛津、剑桥等国际权威出版社教材，覆盖全年龄段学习需求</p>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-icon">🚀</div>
-            <h3 class="benefit-title">科学进阶</h3>
-            <p class="benefit-description">清晰的学习路径规划，从零基础到流利阅读，循序渐进稳步提升</p>
+        <div class="feat-body">
+          <span class="feat-step">水平测试</span>
+          <p class="feat-desc">5个关卡自适应测试，从字母认知到阅读理解全面评估，测完立即获得个性化课程推荐</p>
+          <div class="feat-tags">
+            <span class="ftag">⏱ 5分钟完成</span>
+            <span class="ftag">🧠 智能定级</span>
+            <span class="ftag">📋 即时推荐</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </a>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-brand">Talkini</div>
-    <div>让英语学习更简单</div>
-  </footer>
+    <a href="pages/courseware.html" class="feat-card feat-card-light reveal" style="transition-delay:0.1s">
+      <div class="feat-inner">
+        <div class="feat-header">
+          <span class="feat-icon">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="12" width="36" height="34" rx="5" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
+              <rect x="10" y="12" width="8" height="34" rx="4" fill="#F59E0B"/>
+              <line x1="24" y1="22" x2="40" y2="22" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+              <line x1="24" y1="29" x2="40" y2="29" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+              <line x1="24" y1="36" x2="34" y2="36" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+              <ellipse cx="16" cy="42" rx="3.5" ry="2" fill="rgba(252,129,74,0.3)"/>
+              <ellipse cx="38" cy="42" rx="3.5" ry="2" fill="rgba(252,129,74,0.3)"/>
+              <circle cx="26" cy="17" r="1.8" fill="#0F172A"/>
+              <circle cx="34" cy="17" r="1.8" fill="#0F172A"/>
+              <path d="M27 20 Q30 23 33 20" stroke="#0F172A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+              <path d="M42 12 L42 24 L38 20 L34 24 L34 12" fill="#EC4899" opacity="0.8"/>
+            </svg>
+          </span>
+          <h2 class="feat-title">找到最适合的课件</h2>
+        </div>
+        <div class="feat-body">
+          <span class="feat-step">课件推荐</span>
+          <p class="feat-desc">覆盖零基础到高级对话5大阶段，牛津、剑桥、国家地理等权威教材，每套附详细介绍</p>
+          <div class="feat-tags">
+            <span class="ftag">🌱 5大学习阶段</span>
+            <span class="ftag">📖 40+套课件</span>
+            <span class="ftag">🏅 权威教材</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-logo">
+    <img src="img/talkini_logo.jpg" alt="Talkini">
+    <span class="footer-brand">Talkini</span>
+  </div>
+  <div class="footer-copy">专业英语口语课程平台 · 让学习更高效</div>
+</footer>
+
+<script>
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
