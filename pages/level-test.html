@@ -551,7 +551,7 @@ function renderQuiz() {
       </div>
       <div class="options" id="options">
         ${q.options.map((opt, i) => `
-          <button class="option" tabindex="-1" data-idx="${i}" onclick="handleAnswer(${i})">
+          <button class="option" tabindex="-1" onfocus="this.blur()" data-idx="${i}" onclick="handleAnswer(${i})">
             <span class="opt-letter">${letters[i]}</span>
             <span>${opt}</span>
           </button>
