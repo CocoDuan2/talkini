@@ -117,7 +117,71 @@ body{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;background
 <div class="container" id="app"></div>
 
 <script>
-const STAGES = [
+// ── 自适应题库（难度 1-5，答案分布于 A/B/C/D 各位置）──
+const QUESTION_BANK = {
+  1: [
+    { q: '「大写字母B」的小写是？', options: ['b','d','p','q'], answer: 0 },
+    { q: '「小写字母g」的大写是？', options: ['B','C','G','Q'], answer: 2 },
+    { q: '「苹果」的英文是？', options: ['orange','banana','apple','grape'], answer: 2 },
+    { q: '「数字2」的英文是？', options: ['one','four','three','two'], answer: 3 },
+    { q: '「猫」的英文是？', options: ['dog','bird','cat','fish'], answer: 2 },
+    { q: '「红色」的英文是？', options: ['blue','red','green','yellow'], answer: 1 },
+    { q: '「妈妈」的英文是？', options: ['dad','sister','mom','brother'], answer: 2 },
+    { q: '「狗」的英文是？', options: ['cat','pig','cow','dog'], answer: 3 },
+    { q: '「眼睛」的英文是？', options: ['ear','eye','nose','mouth'], answer: 1 },
+  ],
+  2: [
+    { q: '「桌子」的英文是？', options: ['chair','table','door','window'], answer: 1 },
+    { q: '「你好」用英文怎么说？', options: ['goodbye','sorry','hello','thanks'], answer: 2 },
+    { q: '「大的」英文是？', options: ['small','long','big','short'], answer: 2 },
+    { q: '「学校」的英文是？', options: ['home','school','park','shop'], answer: 1 },
+    { q: '「跑步」的英文是？', options: ['swim','walk','jump','run'], answer: 3 },
+    { q: '「牛奶」的英文是？', options: ['juice','milk','water','tea'], answer: 1 },
+    { q: '「晴天」的英文是？', options: ['rainy','cloudy','windy','sunny'], answer: 3 },
+    { q: '"What\'s your name?" 的回答是？', options: ['Hello','Goodbye','Thank you','My name is Tom'], answer: 3 },
+    { q: '「书」的英文是？', options: ['pen','book','desk','chair'], answer: 1 },
+  ],
+  3: [
+    { q: '"I ___ apples" (我喜欢苹果)', options: ['likes','liking','like','liked'], answer: 2 },
+    { q: '"He is ___" (他在跑步)', options: ['run','runs','running','ran'], answer: 2 },
+    { q: '"Two ___" (两只猫)', options: ['cats','cat','cates',"cat's"], answer: 0 },
+    { q: '"The book is ___ the table" (书在桌子上)', options: ['on','in','under','at'], answer: 0 },
+    { q: '"___ you like ice cream?" (你喜欢冰淇淋吗?)', options: ['Are','Is','Does','Do'], answer: 3 },
+    { q: '"How are you?" 的正确回答是？', options: ["I'm Tom","I'm 8 years old","Fine, thank you","I'm going"], answer: 2 },
+    { q: '"I ___ like fish" (我不喜欢鱼)', options: ["not","no","doesn't","don't"], answer: 3 },
+    { q: '"Thank you" 的标准回答是？', options: ["You're welcome","Thank you","Hello","Goodbye"], answer: 0 },
+    { q: '早上见到老师应该说？', options: ['Good night','Good morning','Goodnight','Good evening'], answer: 1 },
+  ],
+  4: [
+    { q: '"Yesterday, I ___ to the park" (昨天去了公园)', options: ['go','goes','going','went'], answer: 3 },
+    { q: '"Elephants are ___ than cats" (大象比猫大)', options: ['big','biggest','bigger','more big'], answer: 2 },
+    { q: '"I have ___ my homework" (我已经做完作业了)', options: ['finishing','finishes','finish','finished'], answer: 3 },
+    { q: '"___ is your birthday?" (你的生日是什么时候?)', options: ['What','Where','Who','When'], answer: 3 },
+    { q: '"Tom has a dog. ___ dog is brown." 空格填什么？', options: ['A','One','The','That'], answer: 2 },
+    { q: '"I like apples ___ I don\'t like oranges"', options: ['so','or','but','and'], answer: 2 },
+    { q: '正确的句子顺序是？"to / school / goes / he"', options: ['School goes he to','He goes to school','Goes he to school','To school he goes'], answer: 1 },
+    { q: '"I ___ swim very well" (我游泳游得很好)', options: ['can','am','do','have'], answer: 0 },
+    { q: '"She asked me ___ the window" (她让我关窗)', options: ['close','closing','closed','to close'], answer: 3 },
+  ],
+  5: [
+    { q: '"By next year, I ___ English for 5 years"', options: ['learn','am learning','will have learned','learned'], answer: 2 },
+    { q: '"The book ___ by many people" (被动语态)', options: ['reads','was read','reading','read'], answer: 1 },
+    { q: '"If I ___ rich, I would travel the world"', options: ['am','were','be','was'], answer: 1 },
+    { q: '"The scientist made an important ___" (重要发现)', options: ['discovering','discovered','discovery','discover'], answer: 2 },
+    { q: '"happy" 的反义词是？', options: ['joyful','sad','excited','pleased'], answer: 1 },
+    { q: '"She suggested ___ early" (她建议早点离开)', options: ['to leave','leaving','left','leave'], answer: 1 },
+    { q: '"Despite ___ tired, he finished the race"', options: ['be','he was','was','being'], answer: 3 },
+    { q: '"Not only did he win, ___ he broke the record"', options: ['and','also','so','but also'], answer: 3 },
+  ],
+};
+
+const TIME_BY_LEVEL = { 1: 15, 2: 18, 3: 20, 4: 25, 5: 30 };
+const TOTAL_QUESTIONS = 15;
+const DIFF_LABELS = ['', '基础', '初级', '中级', '高级', '挑战'];
+const DIFF_COLORS = ['', '#F59E0B', '#22C55E', '#3B82F6', '#8B5CF6', '#EC4899'];
+
+// ── 以下 STAGES_PLACEHOLDER 仅占位，不使用 ──
+const _UNUSED = [
   {
     name: "关卡 1",
     title: "字母和基础词汇",
@@ -223,7 +287,7 @@ const STAGES = [
       { q: '"What do you think about...?" 这个问题要求你？', options: ["Express your opinion","Say yes","Say no","Repeat"], answer: 0 }
     ]
   }
-];
+]; // end _UNUSED
 
 const LEVELS = [
   {
@@ -321,11 +385,66 @@ const LEVELS = [
 ];
 
 const app = document.getElementById("app");
-let state = { screen: "welcome", stage: 0, qIndex: 0, scores: [0,0,0,0,0], timer: 0, timerRef: null, totalCorrect: 0, totalAnswered: 0 };
+
+function initState() {
+  return {
+    screen: "welcome",
+    difficulty: 2,
+    questionCount: 0,
+    history: [],      // [{difficulty, correct}]
+    usedIds: {},      // {level: Set<index>}
+    currentQuestion: null,
+    timer: 0,
+    timerRef: null,
+    totalCorrect: 0,
+  };
+}
+
+let state = initState();
+
+function getNextQuestion() {
+  const level = state.difficulty;
+  if (!state.usedIds[level]) state.usedIds[level] = new Set();
+  const pool = QUESTION_BANK[level];
+  const avail = pool.map((_, i) => i).filter(i => !state.usedIds[level].has(i));
+
+  if (avail.length > 0) {
+    const pick = avail[Math.floor(Math.random() * avail.length)];
+    state.usedIds[level].add(pick);
+    return { ...pool[pick], difficulty: level };
+  }
+
+  // 当前难度题目用尽，从相邻难度取题
+  for (let d = 1; d <= 4; d++) {
+    for (const tryLevel of [level + d, level - d]) {
+      if (tryLevel < 1 || tryLevel > 5) continue;
+      if (!state.usedIds[tryLevel]) state.usedIds[tryLevel] = new Set();
+      const p = QUESTION_BANK[tryLevel];
+      const a = p.map((_, i) => i).filter(i => !state.usedIds[tryLevel].has(i));
+      if (a.length > 0) {
+        const pick = a[Math.floor(Math.random() * a.length)];
+        state.usedIds[tryLevel].add(pick);
+        return { ...p[pick], difficulty: tryLevel };
+      }
+    }
+  }
+  return null;
+}
+
+function getFinalLevelIdx() {
+  const h = state.history;
+  if (h.length === 0) return 0;
+  const recent = h.slice(-Math.min(8, h.length));
+  const avg = recent.reduce((s, q) => s + q.difficulty, 0) / recent.length;
+  if (avg < 1.5) return 0;
+  if (avg < 2.5) return 1;
+  if (avg < 3.5) return 2;
+  if (avg < 4.5) return 3;
+  return 4;
+}
 
 function render() {
   if (state.screen === "welcome") renderWelcome();
-  else if (state.screen === "stage-intro") renderStageIntro();
   else if (state.screen === "quiz") renderQuiz();
   else if (state.screen === "result") renderResult();
 }
@@ -336,9 +455,9 @@ function renderWelcome() {
       <a href="../index.html" style="position:absolute;top:20px;left:20px;color:#fff;text-decoration:none;font-size:13px;font-weight:800;padding:7px 16px;border:2px solid rgba(255,255,255,0.5);border-radius:50px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);">← 首页</a>
       <div style="font-size:64px;margin-bottom:16px">📝</div>
       <h1>英语水平测试</h1>
-      <p class="subtitle">5 个趣味关卡，快速了解英语水平<br>测完为你推荐最适合的课程</p>
+      <p class="subtitle">15道自适应题目，精准测出英语水平<br>测完为你推荐最适合的课程</p>
       <div class="features">
-        <div><span class="icon">⏱️</span><span>5-8 分钟</span></div>
+        <div><span class="icon">⏱️</span><span>约3分钟</span></div>
         <div><span class="icon">🎯</span><span>自适应难度</span></div>
         <div><span class="icon">📚</span><span>精准推荐</span></div>
       </div>
@@ -350,33 +469,16 @@ function renderWelcome() {
 }
 
 function startTest() {
-  state = { screen: "stage-intro", stage: 0, qIndex: 0, scores: [0,0,0,0,0], timer: 0, timerRef: null, totalCorrect: 0, totalAnswered: 0 };
-  render();
-}
-
-function renderStageIntro() {
-  const s = STAGES[state.stage];
-  const count = s.questions.length + " 题";
-  const timeDesc = `每题 ${s.timeLimit} 秒`;
-  app.innerHTML = `
-    <div class="screen active stage-intro animate-fade">
-      <div class="stage-icon">${s.icon}</div>
-      <h2>${s.name}：${s.title}</h2>
-      <p>${s.desc}<br><br>共 ${count}，${timeDesc}</p>
-      <button class="btn btn-next" onclick="startStage()">准备好了！</button>
-    </div>`;
-}
-
-function startStage() {
-  state.qIndex = 0;
+  state = initState();
   state.screen = "quiz";
+  state.currentQuestion = getNextQuestion();
   render();
 }
 
 function startTimer() {
   clearInterval(state.timerRef);
-  const s = STAGES[state.stage];
-  state.timer = s.timeLimit;
+  const timeLimit = TIME_BY_LEVEL[state.currentQuestion.difficulty];
+  state.timer = timeLimit;
   updateTimerDisplay();
   state.timerRef = setInterval(() => {
     state.timer--;
@@ -397,23 +499,23 @@ function updateTimerDisplay() {
 }
 
 function renderQuiz() {
-  const s = STAGES[state.stage];
-  const q = s.questions[state.qIndex];
-  const totalQ = s.questions.length;
-  const progress = ((state.qIndex) / totalQ) * 100;
+  const q = state.currentQuestion;
+  const progress = (state.questionCount / TOTAL_QUESTIONS) * 100;
   const letters = ["A","B","C","D"];
+  const color = DIFF_COLORS[q.difficulty];
+  const label = DIFF_LABELS[q.difficulty];
 
   app.innerHTML = `
     <div class="progress-bar">
-      <span class="stage-label" style="color:${s.color}">${s.name}</span>
+      <span class="stage-label" style="color:${color}">${label}</span>
       <div class="progress-track">
-        <div class="progress-fill" style="width:${progress}%;background:${s.color}"></div>
+        <div class="progress-fill" style="width:${progress}%;background:${color}"></div>
       </div>
-      <span class="timer" id="timer">${s.timeLimit}s</span>
+      <span class="timer" id="timer">${TIME_BY_LEVEL[q.difficulty]}s</span>
     </div>
     <div class="screen active quiz" style="padding-top:12px">
       <div class="question-card">
-        <div class="q-number">第 ${state.qIndex + 1} / ${totalQ} 题</div>
+        <div class="q-number">第 ${state.questionCount + 1} / ${TOTAL_QUESTIONS} 题</div>
         <div class="q-text">${q.q}</div>
       </div>
       <div class="options" id="options">
@@ -435,15 +537,17 @@ function renderQuiz() {
 
 function handleAnswer(idx) {
   clearInterval(state.timerRef);
-  const s = STAGES[state.stage];
-  const q = s.questions[state.qIndex];
+  const q = state.currentQuestion;
   const correct = idx === q.answer;
-  state.totalAnswered++;
 
-  if (correct) {
-    state.scores[state.stage]++;
-    state.totalCorrect++;
-  }
+  state.history.push({ difficulty: q.difficulty, correct });
+  if (correct) state.totalCorrect++;
+  state.questionCount++;
+
+  // 自适应：答对升难，答错降难
+  state.difficulty = correct
+    ? Math.min(5, state.difficulty + 1)
+    : Math.max(1, state.difficulty - 1);
 
   const opts = document.querySelectorAll(".option");
   opts.forEach(o => {
@@ -454,53 +558,34 @@ function handleAnswer(idx) {
   });
 
   setTimeout(() => {
-    state.qIndex++;
-    if (state.qIndex >= s.questions.length) {
-      finishStage();
-    } else {
+    if (state.questionCount >= TOTAL_QUESTIONS) {
+      state.screen = "result";
       render();
+    } else {
+      state.currentQuestion = getNextQuestion();
+      if (!state.currentQuestion) {
+        state.screen = "result";
+        render();
+      } else {
+        renderQuiz();
+      }
     }
   }, correct ? 600 : 900);
 }
 
-function finishStage() {
-  const s = STAGES[state.stage];
-  const score = state.scores[state.stage];
-  const passed = score >= s.passScore;
-
-  if (passed && state.stage < STAGES.length - 1) {
-    state.stage++;
-    state.screen = "stage-intro";
-    render();
-  } else {
-    state.screen = "result";
-    render();
-  }
-}
-
-function getLevel() {
-  for (let i = 0; i < STAGES.length; i++) {
-    if (state.scores[i] < STAGES[i].passScore) return i;
-  }
-  return STAGES.length;
-}
-
 function renderResult() {
-  const levelIdx = getLevel();
-  const level = LEVELS[Math.min(levelIdx, LEVELS.length - 1)];
-  const stagesCompleted = Math.min(levelIdx + 1, STAGES.length);
+  const levelIdx = getFinalLevelIdx();
+  const level = LEVELS[levelIdx];
+  const accuracy = state.history.length > 0
+    ? Math.round((state.totalCorrect / state.history.length) * 100) : 0;
 
-  let mainCards = level.mainCourses.map(c => courseCard(c, "main")).join("");
-  let extraCards = level.extraCourses.map(c => courseCard(c, "extra")).join("");
+  let mainCards = level.mainCourses.map(c => courseCard(c, "main", levelIdx)).join("");
+  let extraCards = level.extraCourses.map(c => courseCard(c, "extra", levelIdx)).join("");
 
-  let statsHTML = "";
-  for (let i = 0; i < stagesCompleted && i < STAGES.length; i++) {
-    const s = STAGES[i];
-    const passed = state.scores[i] >= s.passScore;
-    const total = s.questions.length;
-    const label = s.title;
-    statsHTML += `<div><span class="stat-num">${state.scores[i]}/${total}</span><span class="stat-label">${label} ${passed ? "✅" : ""}</span></div>`;
-  }
+  const statsHTML = `
+    <div><span class="stat-num">${state.totalCorrect}/${state.questionCount}</span><span class="stat-label">答对题数</span></div>
+    <div><span class="stat-num">${accuracy}%</span><span class="stat-label">正确率</span></div>
+  `;
 
   app.innerHTML = `
     <div class="screen active result animate-fade">
@@ -526,17 +611,14 @@ function renderResult() {
     </div>`;
 }
 
-function courseCard(c, type) {
+function courseCard(c, type, levelIdx) {
   const label = type === "main"
     ? '<span class="recommend-label label-main">推荐主课</span>'
     : '<span class="recommend-label label-extra">搭配阅读</span>';
 
-  const levelIdx = getLevel();
   let section = 'section-1';
-  if (levelIdx === 0) section = 'section-1';
-  else if (levelIdx === 1) section = 'section-1';
-  else if (levelIdx === 2) section = 'section-2';
-  else if (levelIdx === 3) section = 'section-2';
+  if (levelIdx <= 1) section = 'section-1';
+  else if (levelIdx <= 3) section = 'section-2';
   else section = 'section-3';
 
   return `
