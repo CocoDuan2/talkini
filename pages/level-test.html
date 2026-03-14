@@ -43,10 +43,10 @@ body{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;background
 .btn-start:active{transform:scale(.96)}
 
 /* Progress */
-.progress-bar{position:sticky;top:0;z-index:10;background:#fff;padding:16px 20px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 12px rgba(0,0,0,.06);border-bottom:1px solid #E2E8F0}
-.progress-bar .stage-label{font-size:13px;color:var(--sub);white-space:nowrap;font-weight:600}
-.progress-track{flex:1;height:6px;background:#E2E8F0;border-radius:3px;overflow:hidden}
-.progress-fill{height:100%;border-radius:3px;transition:width .4s ease;background:var(--primary)}
+.progress-bar{position:sticky;top:0;z-index:10;background:#fff;padding:16px 20px;display:flex;align-items:center;gap:12px;box-shadow:0 4px 16px rgba(0,0,0,.1);border-bottom:2px solid #E2E8F0}
+.progress-bar .stage-label{font-size:13px;color:var(--sub);white-space:nowrap;font-weight:700}
+.progress-track{flex:1;height:8px;background:#E2E8F0;border-radius:4px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(0,0,0,.1)}
+.progress-fill{height:100%;border-radius:4px;transition:width .4s ease;background:var(--primary);box-shadow:0 0 8px rgba(37,99,235,.4)}
 .progress-bar .timer{font-size:15px;font-weight:700;min-width:40px;text-align:right;color:var(--primary)}
 
 /* Quiz */
@@ -107,8 +107,14 @@ body{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;background
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes pop{0%{transform:scale(0)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes celebrate{0%{transform:scale(1) rotate(0deg)}25%{transform:scale(1.1) rotate(-5deg)}75%{transform:scale(1.1) rotate(5deg)}100%{transform:scale(1) rotate(0deg)}}
 .animate-pop{animation:pop .4s ease}
 .animate-fade{animation:fadeIn .4s ease}
+.animate-celebrate{animation:celebrate .5s ease}
+
+/* 鼓励提示 */
+.encourage-toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:linear-gradient(135deg,#22C55E,#16A34A);color:#fff;padding:24px 40px;border-radius:20px;font-size:20px;font-weight:800;box-shadow:0 8px 32px rgba(34,197,94,.4);z-index:100;animation:pop .5s ease}
+.encourage-toast::before{content:'';position:absolute;inset:-4px;background:linear-gradient(135deg,#22C55E,#16A34A);border-radius:22px;opacity:.3;filter:blur(8px);z-index:-1}
 </style>
 </head>
 <body>
@@ -580,7 +586,10 @@ function handleAnswer(idx) {
   opts.forEach(o => {
     o.classList.add("disabled");
     const oi = parseInt(o.dataset.idx);
-    if (oi === q.answer) o.classList.add("correct");
+    if (oi === q.answer) {
+      o.classList.add("correct");
+      if (correct) o.classList.add("animate-celebrate");
+    }
     else if (oi === idx && !correct) o.classList.add("wrong");
   });
 
@@ -589,6 +598,15 @@ function handleAnswer(idx) {
       state.screen = "result";
       render();
     } else {
+      // 第10题鼓励
+      if (state.questionCount === 10) {
+        const toast = document.createElement("div");
+        toast.className = "encourage-toast";
+        toast.textContent = "已完成一半！加油 💪";
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 1500);
+      }
+
       state.currentQuestion = getNextQuestion();
       if (!state.currentQuestion) {
         state.screen = "result";
