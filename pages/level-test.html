@@ -67,6 +67,11 @@ body{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;background
 .option.wrong .opt-letter{background:var(--red);color:#fff}
 .option.disabled{pointer-events:none}
 
+/* 不知道按钮 */
+.skip-btn{margin-top:16px;padding:12px;background:transparent;border:1px dashed #CBD5E1;border-radius:12px;color:#94A3B8;font-size:14px;font-weight:600;cursor:pointer;transition:all .3s;text-align:center;-webkit-tap-highlight-color:transparent}
+.skip-btn:hover{border-color:#94A3B8;color:#64748B}
+.skip-btn:active{transform:scale(.98)}
+
 /* Stage Transition */
 .stage-intro{justify-content:center;text-align:center}
 .stage-intro .stage-icon{font-size:80px;margin-bottom:20px;animation:bounce 1s ease infinite}
@@ -556,6 +561,7 @@ function renderQuiz() {
             <span>${opt}</span>
           </div>
         `).join("")}
+        <div class="skip-btn" role="button" ontouchend="handleAnswer(-1)" onclick="handleAnswer(-1)">不知道 🤔</div>
       </div>
     </div>`;
   startTimer();
