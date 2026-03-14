@@ -71,6 +71,7 @@ body{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;background
 .skip-btn{margin-top:16px;padding:12px;background:transparent;border:1px dashed #CBD5E1;border-radius:12px;color:#94A3B8;font-size:14px;font-weight:600;cursor:pointer;transition:all .3s;text-align:center;-webkit-tap-highlight-color:transparent}
 .skip-btn:hover{border-color:#94A3B8;color:#64748B}
 .skip-btn:active{transform:scale(.98)}
+.skip-btn.selected{background:#FEF2F2;border-color:#FCA5A5;border-style:solid;color:#DC2626}
 
 /* Stage Transition */
 .stage-intro{justify-content:center;text-align:center}
@@ -594,6 +595,15 @@ function handleAnswer(idx) {
     }
     else if (oi === idx && !correct) o.classList.add("wrong");
   });
+
+  // 标记"不知道"按钮
+  if (idx === -1) {
+    const skipBtn = document.querySelector(".skip-btn");
+    if (skipBtn) {
+      skipBtn.classList.add("selected");
+      skipBtn.style.pointerEvents = "none";
+    }
+  }
 
   setTimeout(() => {
     if (state.questionCount >= TOTAL_QUESTIONS) {
